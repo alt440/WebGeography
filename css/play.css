@@ -1,0 +1,58 @@
+/*creating a new font from a file in fonts folder*/
+@font-face {
+  font-family: medieval;
+  src:url('../fonts/PrinceValiant.ttf');
+  /*src:url('../fonts/Olondon_.otf');*/
+}
+
+/*created a separate div tag to make the background. If I didnt, the opacity
+would also affect the elements within the div*/
+#background{
+  background-image: url("../img/world-map.png");
+  opacity: 0.7;
+  background-size: 100% 100%;
+  /*takes all the page*/
+  width: 100%;
+  height: 100%;
+  /*puts the background behind*/
+  z-index: -100;
+  /*this allows the features div to go on top of this one*/
+  position: absolute;
+}
+
+#features{
+
+  /*puts the element forward*/
+  z-index: 100;
+  /*the div takes the whole page. Important for centering items*/
+  width: 100%;
+  height: 100%;
+}
+
+.instructions{
+  font-size: 70px;
+  font-family: medieval;
+  position: relative;
+  top: 30%;
+  text-align: center;
+}
+
+#buttons{
+  position: relative;
+  top: 40%;
+  left: 35%;
+}
+
+#yes{
+  font-family: medieval;
+  width: auto;
+  height: 60px;
+  font-size: 40px;
+}
+
+#no{
+  font-family: medieval;
+  width: auto;
+  height: 60px;
+  font-size: 40px;
+}
