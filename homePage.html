@@ -1,0 +1,103 @@
+<html>
+<head>
+  <title>Welcome</title>
+  <!-- we can get react files this way because we downloaded them. Look
+ at canonical path-->
+  <script src="js/react.js"></script>
+  <script src="js/react-dom.js"></script>
+  <!--this is a javascript compiler including xml. It does not like comments. Marks those as errors-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.34/browser.js">
+  </script>
+  <!--adding jQuery-->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+  <meta charset="utf-8">
+
+  <link rel="stylesheet" href="css/homePage.css">
+  <script src="js/homePage.js"></script>
+</head>
+<body>
+
+  <div id="navbar">
+
+  </div>
+
+
+  <!-- for creating the navigation bar-->
+  <!-- notice the tbody tag. React does not like when table is followed by tr-->
+  <script type="text/babel">
+
+    var NavBar = React.createClass({
+      render: function(){
+        return(
+          <div className="nav-bar">
+            <table className="nav-bar-table">
+              <tbody>
+                <tr className="nav-bar-row">
+                  <td className="titlePage" id="home">Home</td>
+                  <td className="titlePage" id="play" href="play.html">Play</td>
+                  <td className="titlePage" id="about_us">About Us</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        )
+      }
+    });
+
+    ReactDOM.render(
+      <NavBar />,
+      document.getElementById('navbar')
+    );
+
+  </script>
+
+
+
+  <!-- slide show of images from: https://www.w3schools.com/howto/howto_js_slideshow.asp -->
+  <!-- Slideshow container -->
+  <div class="slideshow-container">
+
+ <!-- Full-width images with number and caption text -->
+ <div class="mySlides" id="fade">
+   <div class="numbertext">1 / 3</div>
+   <img src="img/slide1.jpg" style="width:100%">
+   <div class="text">Caption Text</div>
+ </div>
+
+ <div class="mySlides" id="fade">
+   <div class="numbertext">2 / 3</div>
+   <img src="img/slide2.jpg" style="width:100%">
+   <div class="text">Caption Two</div>
+ </div>
+
+ <!--<div class="mySlides" id="fade">
+   <div class="numbertext">3 / 3</div>
+   <img src="img/north-america.jpg" style="width:100%">
+   <div class="text">Caption Three</div>
+ </div>-->
+
+  </div>
+
+  <script>
+  /*code for slide show*/
+  /*source: https://www.w3schools.com/howto/howto_js_slideshow.asp*/
+  var slideIndex = 0;
+  showSlides();
+
+  function showSlides() {
+      var i;
+      var slides = document.getElementsByClassName("mySlides");
+      //alert(slides.length);
+      for (i = 0; i < slides.length; i++) {
+          slides[i].style.display = "none";
+      }
+      slideIndex++;
+      if (slideIndex > slides.length) {slideIndex = 1}
+      if (slideIndex <= 0) {slideIndex = slides.length-1}
+      slides[slideIndex-1].style.display = "block";
+      setTimeout(showSlides, 5000); // Change image every 2 seconds
+  }
+  </script>
+</body>
+</html>

@@ -1,0 +1,98 @@
+<html>
+<head>
+  <title>Welcome</title>
+  <!-- we can get react files this way because we downloaded them. Look
+ at canonical path-->
+  <script src="js/react.js"></script>
+  <script src="js/react-dom.js"></script>
+  <!--this is a javascript compiler including xml. It does not like comments. Marks those as errors-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.34/browser.js">
+  </script>
+  <!--adding jQuery-->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+  <meta charset="utf-8">
+
+  <link rel="stylesheet" href="css/play.css">
+</head>
+<body>
+<!--no nav bar, only play screen-->
+<div id="mainPage">
+
+</div>
+
+<!--put the div below because must be in enclosing tag-->
+<script type="text/babel">
+
+  var MainPage = React.createClass({
+    render: function(){
+      return (
+        <div>
+        <div id="background">
+        </div>
+        <div id="features">
+        <p className="instructions" id="firstText">Help Julie navigate to the different locations of the cruise!</p>
+        <p className="instructions" id="secondText">Are you ready to start?</p>
+        <table id="buttons">
+          <tbody>
+            <tr>
+              <td><button id="yes">Yes</button></td>
+              <td><button id="no">Return to Home</button></td>
+            </tr>
+          </tbody>
+        </table>
+        </div>
+        </div>
+      )
+    }
+  });
+
+  ReactDOM.render(
+    <MainPage />,
+    document.getElementById('mainPage')
+  );
+
+</script>
+
+<script>
+
+  //in milliseconds, time before elements appear
+  var timeDelay = 1000;
+  //time given for animation
+  var timeAnimation = 800;
+  $(document).ready(function(){
+
+    //hides the text and buttons before displaying them
+    $('#firstText').hide();
+    $('#secondText').hide();
+    $('#buttons').hide();
+
+    //put it at faster time delay, because we dont want user to wait that long
+    setTimeout(function(){
+      $('#firstText').fadeIn(timeAnimation);
+    },timeDelay)
+
+    //put *2 for timeDelay because this element needs to appear after the first text
+    setTimeout(function(){
+      $('#secondText').fadeIn(timeAnimation);
+    }, timeDelay*2)
+
+    //put *3 for timeDelay because this element needs to appear after the second text
+    setTimeout(function(){
+      $('#buttons').fadeIn(timeAnimation);
+    }, timeDelay*2 +500)
+
+
+    //put functions for buttons
+    $('#no').click(function(){
+      window.location.href = "homePage.html";
+    })
+
+    $('#yes').click(function(){
+      window.location.href = "questions.html";
+    })
+  });
+
+</script>
+</body>
+</html>
