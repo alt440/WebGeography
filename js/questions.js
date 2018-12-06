@@ -44,7 +44,7 @@
     var nameImage = imageSource.split("/");
     var onlyName = nameImage[2];
     onlyName = onlyName.split(".")[0];
-    onlyName = onlyName.replaceAll("-"," ");
+    onlyName = onlyName.split("-").join(" ");
     onlyName = onlyName.replace("_","'");
 
     var inputFieldUntouched = document.getElementById('user_answer').value;
