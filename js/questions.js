@@ -34,7 +34,7 @@
                 'suriname','uruguay','venezuela'];
 
   function chooseSource(){
-    var value = Math.round(Math.random()*(countries.length));
+    var value = Math.round(Math.random()*(countries.length-1));
 
     console.log("img/countries/"+countries[value]+".jpg"+counterRightAnswers+" "+value);
     return "img/countries/"+countries[value]+".jpg";
@@ -44,10 +44,11 @@
     var nameImage = imageSource.split("/");
     var onlyName = nameImage[2];
     onlyName = onlyName.split(".")[0];
-    onlyName = onlyName.replace("-"," ");
+    onlyName = onlyName.replaceAll("-"," ");
     onlyName = onlyName.replace("_","'");
 
-    var inputField = document.getElementById('user_answer').value;
+    var inputFieldUntouched = document.getElementById('user_answer').value;
+    var inputField = inputFieldUntouched.toLowerCase();
     console.log(onlyName);
     if(inputField.localeCompare(onlyName) == 0){
       return true;
