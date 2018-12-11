@@ -10,6 +10,4 @@ This project had the purpose to gain some experience using jQuery and ReactJS. I
 
 -High score board (monthly and weekly)
 
--Dividing the geographic game by continent
-
 -Practice (queries random countries infinitely) and Play (queries each country in a random manner only once). Play saves the scores, not Practice.
