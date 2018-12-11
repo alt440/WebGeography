@@ -1,6 +1,5 @@
 Flow of execution:
 
-homePage.html   -> play.html	-> questions.html -> gameOver.html 	-> homePage.html
+homePage.html   -> play.html	-> selectContinentForPlay.html -> questions.html -> gameOver.html 	-> homePage.html
 									-> questions.html
 		->about_us.html	-> homePage.html
-
