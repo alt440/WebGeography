@@ -31,7 +31,13 @@
                 'mexico','nicaragua','panama','puerto-rico','united-states',
                 'argentina','bolivia','brazil','chile','columbia','ecuador',
                 'falkland-islands','french-guiana','guyana','paraguay','peru',
-                'suriname','uruguay','venezuela'];
+                'suriname','uruguay','venezuela','american-samoa','australia',
+                'cook-islands','coral-sea-islands','federated-states-of-micronesia',
+                'fiji','french-polynesia','guam','kiribati','marshall-islands',
+                'nauru','new-caledonia','new-zealand','niue','northern-mariana-islands',
+                'palau','papua-new-guinea','pitcaim-islands','solomon-islands',
+                'tokelau','tonga','tuvalu','vanuatu','wallis-and-futuna-islands',
+                'western-samoa'];
 
   function chooseSource(){
     var value = Math.round(Math.random()*(countries.length-1));
