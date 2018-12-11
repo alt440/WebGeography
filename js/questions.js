@@ -3,6 +3,7 @@
   //local storage to maintain consistency between scripts
   localStorage.setItem("counterRightAnswers", counterRightAnswers);
 
+  //list of all the countries, which are the names of the images for reference
   countries = ['algeria','angola','benin','botswana','burkina-faso','burundi',
                 'cameroon','central-african-republic','chad','cote-d_ivory',
                 'democratic-republic-of-congo','djibouti','egypt','equatorial-guinea',
@@ -39,6 +40,7 @@
                 'tokelau','tonga','tuvalu','vanuatu','wallis-and-futuna-islands',
                 'western-samoa'];
 
+  //chooses the source of the next image. This generates a new image
   function chooseSource(){
     var value = Math.round(Math.random()*(countries.length-1));
 
@@ -46,6 +48,7 @@
     return "img/countries/"+countries[value]+".jpg";
   }
 
+  //checks if the right answer was inputted.
   function isRightAnswer(imageSource){
     var nameImage = imageSource.split("/");
     var onlyName = nameImage[2];
@@ -76,8 +79,16 @@
         if(isRightAnswer($('#picture').attr("src"))){
           counterRightAnswers+=1;
           localStorage.setItem("counterRightAnswers", counterRightAnswers);
+
+          //loads a new picture
           $('#picture').attr("src", chooseSource());
           $('#user_answer').val("");
+
+          //adds a good job! field to confirm to the user he has entered the right input
+          $('#goodJob').text("Good Job!");
+          $('#goodJob').show();
+          //fades out after 2 seconds
+          $('#goodJob').fadeOut(2000);
         }
         //if he did not, send user to game over page
         else{

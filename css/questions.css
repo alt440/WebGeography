@@ -42,3 +42,10 @@ h4{
   background-image: url('../img/background-buttons.jpg');
   background-size: auto 100%;
 }
+
+#goodJob{
+  position: absolute;
+  top: 65px;
+  left: 350px;
+
+}
