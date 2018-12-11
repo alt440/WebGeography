@@ -1,6 +1,6 @@
   counterRightAnswers = 0;
 
-  //local storage to maintain consistency between scripts
+  //local storage to maintain consistency between scripts. counts the number of right answers
   localStorage.setItem("counterRightAnswers", counterRightAnswers);
 
   //list of all the countries, which are the names of the images for reference
@@ -92,6 +92,8 @@
         }
         //if he did not, send user to game over page
         else{
+          //reference the mistaken country in the game over file
+          localStorage.setItem("lastCountry", $('#picture').attr("src"));
           window.location.href = "gameOver.html";
         }
         //if he did, reload a different picture and add 1 to counter
