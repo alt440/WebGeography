@@ -1,0 +1,23 @@
+{
+  "name": "web_geography",
+  "version": "1.0.0",
+  "description": "Game to know different parts of the world",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alt440/WebGeography.git"
+  },
+  "author": "AT",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/alt440/WebGeography/issues"
+  },
+  "homepage": "https://github.com/alt440/WebGeography#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4"
+  }
+}
