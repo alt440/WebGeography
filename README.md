@@ -4,7 +4,11 @@ NOTE: most of the content of this project (images, fonts, and some code) does no
 
 This project had the purpose to gain some experience using jQuery and ReactJS. It was as well to gain some experience in developing web applications.
 
+Recently added was NodeJS to act as the server to launch the website application. A MongoDB database was added as well from mlab.
+
 # Future Features
+
+-Possible use of Heroku
 
 -Log in and sign up pages
 
