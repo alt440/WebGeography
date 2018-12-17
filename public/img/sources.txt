@@ -26,3 +26,6 @@ slide1:
 https://holykhao.files.wordpress.com/2014/09/dushera_new_1.jpg
 slide2:
 https://darkroom-cdn.s3.amazonaws.com/2016/10/AFP-Getty_ETHIOPIA-CULTURE-TRIBES-HAMAR.jpg
+
+favicon.ico:
+https://pbs.twimg.com/profile_images/451333905442803712/W5mYLAeD.jpeg
