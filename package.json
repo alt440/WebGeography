@@ -17,11 +17,14 @@
   },
   "homepage": "https://github.com/alt440/WebGeography#readme",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.3",
     "ejs": "^2.6.1",
     "express": "^4.16.4",
     "express-session": "^1.15.6",
+    "joi": "^14.3.0",
     "mongoose": "^5.4.0",
-    "passport": "^0.4.0"
+    "passport": "^0.4.0",
+    "serve-favicon": "^2.5.0"
   }
 }

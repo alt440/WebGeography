@@ -1,6 +1,8 @@
-const {User, validate} = require('./models/user');
+const {User, validate, createUser} = require('./models/user');
 var express = require('express');
 var router = express.Router();
+
+var bcrypt = require('bcryptjs');
 
 //GET requests
 //listings on what to do depending on the file being opened.
@@ -59,6 +61,7 @@ router.post('/register.html', async(req, res) =>{
     if (user) {
         return res.status(400).send('That user already exists!');
     } else {
+
         // Insert the new user if they do not exist yet
         user = new User({
             username: req.body.username,
@@ -69,15 +72,20 @@ router.post('/register.html', async(req, res) =>{
         });
 
         //use schema.create to insert data into the db
+        createUser(user, function(err, user){
+          if(err) throw err;
+          else console.log(user);
+        });
         User.create(user, function (err, user) {
           if (err) {
             return next(err);
           } else {
+
             return res.redirect('/homePage.html');
           }
         });
         return console.log("User created!");
-        //res.sendFile(__dirname+'/register.html');
+
     }
 
 

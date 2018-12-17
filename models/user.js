@@ -1,14 +1,16 @@
 var mongoose = require('mongoose'); //used to communicate with the MongoDB database
 var Schema = mongoose.Schema;
 
+var bcrypt = require('bcryptjs');
 var Joi = require('joi');
 
 //creating the schema
 var userSchema = new Schema({
-  //defining extra conditions within the parameters (only available with JOI)
+  //defining extra conditions within the parameters (no need of JOI)
   username: {
     type: String,
     required: true,
+    unique: true,
     minlength: 5,
     maxlength: 20
   },
@@ -16,8 +18,7 @@ var userSchema = new Schema({
   password: {
     type: String,
     required: true,
-    minlength: 5,
-    maxlength: 30
+    minlength: 5
   },
 
   email: {
@@ -31,21 +32,30 @@ var userSchema = new Schema({
   //No extra params (can be defined this way without JOI)
   timeStamp: {
     type: String
-  }
+  },
 });
 
 //creating model using Schema
-const User = mongoose.model('User', userSchema);
+var User = mongoose.model('User', userSchema);
 
 function validateUser(User){
   const schema = {
     username: Joi.string().min(5).max(20).required(),
-    password: Joi.string().min(5).max(30).required(),
+    password: Joi.string().min(5).required(),
     email: Joi.string().min(5).max(40).required().email(),
     timeStamp: Joi.string()
   }
 
   return Joi.validate(User, schema);
+}
+
+exports.createUser = function(newUser, callback){
+	bcrypt.genSalt(10, function(err, salt) {
+    	bcrypt.hash(newUser.password, salt, function(err, hash) {
+   			newUser.password = hash;
+   			newUser.save(callback);
+    	});
+	});
 }
 
 //make the model available in other files
