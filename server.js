@@ -11,6 +11,8 @@ var router = require('./webFlow');
 //import the mongodb native drivers.
 var mongodb = require('mongodb');
 
+//mongoose for communicating with MongoDB
+var mongoose = require('mongoose');
 
 //SOURCE OF PASSPORT CONFIG: https://code.tutsplus.com/tutorials/authenticating-nodejs-applications-with-passport--cms-21619
 // Configuring Passport. Used for user authentication, and to get the contents
@@ -33,13 +35,17 @@ passport.deserializeUser(function(id, done) {
   });
 });
 
+//(Focus on This Variable)
+var url = "mongodb://perS0nADm1N:"+encodeURIComponent("*geo@P0w3r3d*")+"@ds155097.mlab.com:55097/web_geography";
+
+mongoose.connect(url, {useNewUrlParser: true});
+
 //We need to work with "MongoClient" interface in order to connect to a mongodb server.
 var MongoClient = mongodb.MongoClient;
 
 // Connection URL. This is where your mongodb server is running.
 
-//(Focus on This Variable)
-var url = "mongodb://perS0nADm1N:"+encodeURIComponent("*geo@P0w3r3d*")+"@ds155097.mlab.com:55097/web_geography";
+
 //(Focus on This Variable)
 
 // Use connect method to connect to the Server
@@ -59,12 +65,14 @@ var url = "mongodb://perS0nADm1N:"+encodeURIComponent("*geo@P0w3r3d*")+"@ds15509
 
 var path = require('path');
 
-
-
 //setting folder as views folder
 app.set('WebGeography', path.join(__dirname, 'WebGeography'));
 //enabling css and js
 app.use(express.static(__dirname + '/public'));
+
+//for the favicon
+var favicon = require('serve-favicon');
+app.use(favicon(__dirname + '/public/img/favicon.ico'));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));

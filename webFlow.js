@@ -1,3 +1,4 @@
+const {User, validate} = require('./models/user');
 var express = require('express');
 var router = express.Router();
 
@@ -44,8 +45,43 @@ router.post('/login.html', function(req, res){
   res.sendFile(__dirname+'/login.html');
 });
 
-router.post('/register.html', function(req, res){
-  res.sendFile(__dirname+'/register.html');
+router.post('/register.html', async(req, res) =>{
+  //https://vegibit.com/node-js-mongodb-user-registration/
+  // First Validate The Request
+    const { error } = validate(req.body);
+    if (error) {
+        console.log(error.details[0].message);
+        return res.status(400).send(error.details[0].message);
+    }
+
+    // Check if this user already exists
+    let user = await User.findOne({ email: req.body.email });
+    if (user) {
+        return res.status(400).send('That user already exists!');
+    } else {
+        // Insert the new user if they do not exist yet
+        user = new User({
+            username: req.body.username,
+            email: req.body.email,
+            password: req.body.password,
+            //the time stamp give this format: 'YYYY-MM-DD hh:mm:ss'
+            timeStamp: new Date().toISOString().replace(/T/, ' ').replace(/\..+/, ''),
+        });
+
+        //use schema.create to insert data into the db
+        User.create(user, function (err, user) {
+          if (err) {
+            return next(err);
+          } else {
+            return res.redirect('/homePage.html');
+          }
+        });
+        return console.log("User created!");
+        //res.sendFile(__dirname+'/register.html');
+    }
+
+
+
 });
 
 module.exports = router;
