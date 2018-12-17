@@ -31,4 +31,21 @@ router.get('/selectContinentForPlay.html', function(req, res){
   res.sendFile(__dirname+'/selectContinentForPlay.html');
 });
 
+router.get('/login.html', function(req, res){
+  res.sendFile(__dirname+'/login.html');
+});
+
+router.get('/register.html', function(req, res){
+  res.sendFile(__dirname+'/register.html');
+});
+
+//To handle the POST forms of the login and register pages
+router.post('/login.html', function(req, res){
+  res.sendFile(__dirname+'/login.html');
+});
+
+router.post('/register.html', function(req, res){
+  res.sendFile(__dirname+'/register.html');
+});
+
 module.exports = router;
