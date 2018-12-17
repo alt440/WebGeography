@@ -1,9 +1,37 @@
 var express = require('express');//our pre-built server
 var bodyParser = require('body-parser');//used to get POST info
 
+//for all express communication
+var app = express();
+
+//to include my webFlow.js
+var router = require('./webFlow');
+
 //MONGODB from mlab website connection
 //import the mongodb native drivers.
 var mongodb = require('mongodb');
+
+
+//SOURCE OF PASSPORT CONFIG: https://code.tutsplus.com/tutorials/authenticating-nodejs-applications-with-passport--cms-21619
+// Configuring Passport. Used for user authentication, and to get the contents
+//of forms.
+var passport = require('passport');
+// Same as a PHP session
+var expressSession = require('express-session');
+app.use(expressSession({secret: 'mySecretKey'}));
+app.use(passport.initialize());
+app.use(passport.session());
+
+//serialization and deserialization to not request password and username on each page
+passport.serializeUser(function(user, done) {
+  done(null, user._id);
+});
+
+passport.deserializeUser(function(id, done) {
+  User.findById(id, function(err, user) {
+    done(err, user);
+  });
+});
 
 //We need to work with "MongoClient" interface in order to connect to a mongodb server.
 var MongoClient = mongodb.MongoClient;
@@ -31,7 +59,7 @@ var url = "mongodb://perS0nADm1N:"+encodeURIComponent("*geo@P0w3r3d*")+"@ds15509
 
 var path = require('path');
 
-var app = express();
+
 
 //setting folder as views folder
 app.set('WebGeography', path.join(__dirname, 'WebGeography'));
@@ -41,34 +69,9 @@ app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 
-//listings on what to do depending on the file being opened.
-app.get('/', function(req, res){
-  res.sendFile(__dirname+'/homePage.html');
-});
+//to make all webFlow valid from router variable
+app.use('/', router);
 
-app.get('/homePage.html', function(req, res){
-  res.sendFile(__dirname+'/homePage.html');
-})
-
-app.get('/play.html', function(req, res){
-  res.sendFile(__dirname+'/play.html');
-});
-
-app.get('/about_us.html', function(req, res){
-  res.sendFile(__dirname+'/about_us.html');
-});
-
-app.get('/gameOver.html', function(req, res){
-  res.sendFile(__dirname+'/gameOver.html');
-});
-
-app.get('/questions.html', function(req, res){
-  res.sendFile(__dirname+'/questions.html');
-});
-
-app.get('/selectContinentForPlay.html', function(req, res){
-  res.sendFile(__dirname+'/selectContinentForPlay.html');
-});
 
 app.listen(1337); //listens on port 1337
 console.log("Server is running on port 1337");
