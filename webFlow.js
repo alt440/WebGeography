@@ -23,7 +23,7 @@ passport.deserializeUser(function(id, done) {
   });
 });
 
-//set strategy
+//set strategy. Responds to the "authenticate" function on login page
 passport.use(new LocalStrategy(function(username, password, done){
   //looks at whether the username exists in DB
   console.log(username);
@@ -50,12 +50,16 @@ passport.use(new LocalStrategy(function(username, password, done){
 //listings on what to do depending on the file being opened.
 router.get('/', function(req, res){
   //res.sendFile(__dirname+'/homePage.html');
-  res.render('homePage');
+  //this captures the active session (if any)
+  var val = req.session;
+  res.render('homePage', {user: val});
 });
 
 router.get('/homePage.html', function(req, res){
   //res.sendFile(__dirname+'/homePage.html');
-  res.render('homePage');
+  //this captures the active session (if any)
+  var val = req.session;
+  res.render('homePage', {user: val});
 });
 
 router.get('/play.html', function(req, res){
