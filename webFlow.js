@@ -84,6 +84,10 @@ router.get('/register.html', function(req, res){
   res.sendFile(__dirname+'/register.html');
 });
 
+router.get('/typeQuestion.html', function(req, res){
+  res.sendFile(__dirname+'/typeQuestion.html');
+})
+
 //To handle the POST forms of the login and register pages
 router.post('/login.html',
   passport.authenticate("local", {
