@@ -38,7 +38,7 @@ var userSchema = new Schema({
 //creating model using Schema
 var User = mongoose.model('User', userSchema);
 
-function validateUser(User){
+module.exports.validate = function(User){
   const schema = {
     username: Joi.string().min(5).max(20).required(),
     password: Joi.string().min(5).required(),
@@ -58,6 +58,20 @@ exports.createUser = function(newUser, callback){
 	});
 }
 
+module.exports.getUserById = function(id, callback){
+	User.findById(id, callback);
+}
+
+module.exports.getUserByUsername = function(username, callback){
+	var query = {username: username};
+	User.findOne(query, callback);
+}
+
+module.exports.comparePassword = function(candidatePassword, hash, callback){
+	bcrypt.compare(candidatePassword, hash, function(err, isMatch) {
+    	callback(null, isMatch);
+	});
+}
+
 //make the model available in other files
-exports.User = User;
-exports.validate = validateUser;
+module.exports.User = User;

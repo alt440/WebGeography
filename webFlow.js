@@ -1,4 +1,4 @@
-const {User, validate, createUser} = require('./models/user');
+const {User, validate, createUser, getUserById, getUserByUsername, comparePassword} = require('./models/user');
 var express = require('express');
 var router = express.Router();
 
@@ -14,7 +14,7 @@ passport.serializeUser(function(user, done) {
 });
 
 passport.deserializeUser(function(id, done) {
-  User.getUserById(id, function(err, user) {
+  getUserById(id, function(err, user) {
     done(err, user);
   });
 });
@@ -24,19 +24,19 @@ passport.use(new LocalStrategy(function(username, password, done){
   //looks at whether the username exists in DB
   console.log(username);
   console.log(password);
-  User.getUserByUsername(username, function(err, user){
+  getUserByUsername(username, function(err, user){
     if(err) throw err;
     if(!user){
-      return done(null, false, {message: 'Unknown User'});
+      return done(null, false);
     }
 
     //if it does, then compares password
-    User.comparePassword(password, user.password, function(err, isMatch){
+    comparePassword(password, user.password, function(err, isMatch){
       if(err) return done(err);
       if(isMatch){
         return done(null, user);
       } else {
-        return done(null, false, {message:'Invalid Password'});
+        return done(null, false);
       }
     });
   });
@@ -92,7 +92,7 @@ router.post('/login.html',
 router.post('/register.html', async(req, res) =>{
   //https://vegibit.com/node-js-mongodb-user-registration/
   // First Validate The Request
-    const { error } = validateUser(req.body);
+    const { error } = validate(req.body);
     if (error) {
         console.log(error.details[0].message);
         return res.status(400).send(error.details[0].message);
