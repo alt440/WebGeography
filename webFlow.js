@@ -2,9 +2,13 @@ const {User, validate, createUser, getUserById, getUserByUsername, comparePasswo
 var express = require('express');
 var router = express.Router();
 
+//to do the log in phase
 var passport = require('passport');
+
+//passport local is for choosing the strategy that is going to be implemented during the authentication
 var LocalStrategy = require('passport-local').Strategy;
 
+//to encrypt password
 var bcrypt = require('bcryptjs');
 
 //serialization and deserialization
