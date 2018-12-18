@@ -34,27 +34,54 @@
     }
 
     else if(choiceContinent == 1){
-      value = Math.round(Math.random()*(countriesAfrica.length-1));
-      console.log("img/countries/"+countriesAfrica[value]+".jpg"+counterRightAnswers+" "+value);
-      return "img/countries/"+countriesAfrica[value]+".jpg";
+
+      //condition to know if it is an exam
+      if(choiceTypeGame==1){
+        return manageCountriesArray();
+      }
+      else{
+        value = Math.round(Math.random()*(countriesAfrica.length-1));
+        console.log("img/countries/"+countriesAfrica[value]+".jpg"+counterRightAnswers+" "+value);
+        return "img/countries/"+countriesAfrica[value]+".jpg";
+      }
     }
 
     else if(choiceContinent == 2){
-      value = Math.round(Math.random()*(countriesAsia.length-1));
-      console.log("img/countries/"+countriesAsia[value]+".jpg"+counterRightAnswers+" "+value);
-      return "img/countries/"+countriesAsia[value]+".jpg";
+
+      //condition to know if it is an exam
+      if(choiceTypeGame==1){
+        return manageCountriesArray();
+      }
+      else{
+        value = Math.round(Math.random()*(countriesAsia.length-1));
+        console.log("img/countries/"+countriesAsia[value]+".jpg"+counterRightAnswers+" "+value);
+        return "img/countries/"+countriesAsia[value]+".jpg";
+      }
     }
 
     else if(choiceContinent == 3){
-      value = Math.round(Math.random()*(countriesEurope.length-1));
-      console.log("img/countries/"+countriesEurope[value]+".jpg"+counterRightAnswers+" "+value);
-      return "img/countries/"+countriesEurope[value]+".jpg";
+      //condition to know if it is an exam
+      if(choiceTypeGame==1){
+        return manageCountriesArray();
+      }
+      else{
+        value = Math.round(Math.random()*(countriesEurope.length-1));
+        console.log("img/countries/"+countriesEurope[value]+".jpg"+counterRightAnswers+" "+value);
+        return "img/countries/"+countriesEurope[value]+".jpg";
+      }
     }
 
     else if(choiceContinent == 4){
-      value = Math.round(Math.random()*(countriesNorthAmerica.length-1));
-      console.log("img/countries/"+countriesNorthAmerica[value]+".jpg"+counterRightAnswers+" "+value);
-      return "img/countries/"+countriesNorthAmerica[value]+".jpg";
+
+      //condition to know if it is an exam
+      if(choiceTypeGame==1){
+        return manageCountriesArray();
+      }
+      else{
+        value = Math.round(Math.random()*(countriesNorthAmerica.length-1));
+        console.log("img/countries/"+countriesNorthAmerica[value]+".jpg"+counterRightAnswers+" "+value);
+        return "img/countries/"+countriesNorthAmerica[value]+".jpg";
+      }
     }
 
     else if(choiceContinent == 5){
@@ -71,16 +98,23 @@
     }
 
     else if(choiceContinent == 6){
-      value = Math.round(Math.random()*(countriesSouthAmerica.length-1));
-      console.log("img/countries/"+countriesSouthAmerica[value]+".jpg"+counterRightAnswers+" "+value);
-      return "img/countries/"+countriesSouthAmerica[value]+".jpg";
+
+      //condition to know if it is an exam
+      if(choiceTypeGame==1){
+        return manageCountriesArray();
+      }
+      else{
+        value = Math.round(Math.random()*(countriesSouthAmerica.length-1));
+        console.log("img/countries/"+countriesSouthAmerica[value]+".jpg"+counterRightAnswers+" "+value);
+        return "img/countries/"+countriesSouthAmerica[value]+".jpg";
+      }
     }
 
   }
 
   //checks if the right answer was inputted.
   function isRightAnswer(imageSource){
-    /*var nameImage = imageSource.split("/");
+    var nameImage = imageSource.split("/");
     var onlyName = nameImage[2];
     onlyName = onlyName.split(".")[0];
     onlyName = onlyName.split("-").join(" ");
@@ -94,8 +128,7 @@
     }
     else{
       return false;
-    }*/
-    return true;//temporary
+    }
   }
 
 

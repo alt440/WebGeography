@@ -21,6 +21,10 @@ var passport = require('passport');
 // Same as a PHP session
 var expressSession = require('express-session');
 
+//to set the view engine to ejs. Ejs is used to communicate with your html code
+//by providing an easy way to display your variables on your html page.
+app.set('view engine', 'ejs');
+
 app.use(passport.initialize());
 app.use(passport.session());
 

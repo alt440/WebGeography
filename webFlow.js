@@ -49,47 +49,58 @@ passport.use(new LocalStrategy(function(username, password, done){
 //GET requests
 //listings on what to do depending on the file being opened.
 router.get('/', function(req, res){
-  res.sendFile(__dirname+'/homePage.html');
+  //res.sendFile(__dirname+'/homePage.html');
+  res.render('homePage');
 });
 
 router.get('/homePage.html', function(req, res){
-  res.sendFile(__dirname+'/homePage.html');
-})
+  //res.sendFile(__dirname+'/homePage.html');
+  res.render('homePage');
+});
 
 router.get('/play.html', function(req, res){
-  res.sendFile(__dirname+'/play.html');
+  //res.sendFile(__dirname+'/play.html');
+  res.render('play');
 });
 
 router.get('/about_us.html', function(req, res){
-  res.sendFile(__dirname+'/about_us.html');
+  //res.sendFile(__dirname+'/about_us.html');
+  res.render('about_us');
 });
 
 router.get('/gameOver.html', function(req, res){
-  res.sendFile(__dirname+'/gameOver.html');
+  //res.sendFile(__dirname+'/gameOver.html');
+  res.render('gameOver');
 });
 
 router.get('/questions.html', function(req, res){
-  res.sendFile(__dirname+'/questions.html');
+  //res.sendFile(__dirname+'/questions.html');
+  res.render('questions');
 });
 
 router.get('/selectContinentForPlay.html', function(req, res){
-  res.sendFile(__dirname+'/selectContinentForPlay.html');
+  //res.sendFile(__dirname+'/selectContinentForPlay.html');
+  res.render('selectContinentForPlay');
 });
 
 router.get('/login.html', function(req, res){
-  res.sendFile(__dirname+'/login.html');
+  //res.sendFile(__dirname+'/login.html');
+  res.render('login');
 });
 
 router.get('/register.html', function(req, res){
-  res.sendFile(__dirname+'/register.html');
+  //res.sendFile(__dirname+'/register.html');
+  res.render('register');
 });
 
 router.get('/typeQuestion.html', function(req, res){
-  res.sendFile(__dirname+'/typeQuestion.html');
+  //res.sendFile(__dirname+'/typeQuestion.html');
+  res.render('typeQuestion');
 });
 
 router.get('/examMaxScore.html', function(req, res){
-  res.sendFile(__dirname+'/examMaxScore.html');
+  //res.sendFile(__dirname+'/examMaxScore.html');
+  res.render('examMaxScore');
 })
 
 //To handle the POST forms of the login and register pages
