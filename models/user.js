@@ -38,6 +38,7 @@ var userSchema = new Schema({
 //creating model using Schema
 var User = mongoose.model('User', userSchema);
 
+//validate function
 module.exports.validate = function(User){
   const schema = {
     username: Joi.string().min(5).max(20).required(),
@@ -49,6 +50,7 @@ module.exports.validate = function(User){
   return Joi.validate(User, schema);
 }
 
+//create user function (it generates a hash for the password with bcrypt)
 exports.createUser = function(newUser, callback){
 	bcrypt.genSalt(10, function(err, salt) {
     	bcrypt.hash(newUser.password, salt, function(err, hash) {
@@ -58,15 +60,18 @@ exports.createUser = function(newUser, callback){
 	});
 }
 
+//gets the user by its id
 module.exports.getUserById = function(id, callback){
 	User.findById(id, callback);
 }
 
+//gets the user by its username
 module.exports.getUserByUsername = function(username, callback){
 	var query = {username: username};
 	User.findOne(query, callback);
 }
 
+//compares the password to ensure they are the same (for login)
 module.exports.comparePassword = function(candidatePassword, hash, callback){
 	bcrypt.compare(candidatePassword, hash, function(err, isMatch) {
     	callback(null, isMatch);

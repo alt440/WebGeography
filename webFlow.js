@@ -83,7 +83,9 @@ router.get('/register.html', function(req, res){
 //To handle the POST forms of the login and register pages
 router.post('/login.html',
   passport.authenticate("local", {
+    //if the login is successful, then we go to the homepage.
     successRedirect: "/",
+    //if the login is unsuccessful, then we go to the register page (need to change)
     failureRedirect: "/register.html",
     failureFlash: true
   })
@@ -92,6 +94,7 @@ router.post('/login.html',
 router.post('/register.html', async(req, res) =>{
   //https://vegibit.com/node-js-mongodb-user-registration/
   // First Validate The Request
+    //the validate function is from the JOI extension, in user.js
     const { error } = validate(req.body);
     if (error) {
         console.log(error.details[0].message);
@@ -122,7 +125,8 @@ router.post('/register.html', async(req, res) =>{
           if (err) {
             return next(err);
           } else {
-
+            //should indicate here that the user was successfully created
+            //returns to the hompage if the user was created
             return res.redirect('/homePage.html');
           }
         });
