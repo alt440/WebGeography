@@ -2,7 +2,45 @@ const {User, validate, createUser} = require('./models/user');
 var express = require('express');
 var router = express.Router();
 
+var passport = require('passport');
+var LocalStrategy = require('passport-local').Strategy;
+
 var bcrypt = require('bcryptjs');
+
+//serialization and deserialization
+//for passport: maintaining active session
+passport.serializeUser(function(user, done) {
+  done(null, user.id);
+});
+
+passport.deserializeUser(function(id, done) {
+  User.getUserById(id, function(err, user) {
+    done(err, user);
+  });
+});
+
+//set strategy
+passport.use(new LocalStrategy(function(username, password, done){
+  //looks at whether the username exists in DB
+  console.log(username);
+  console.log(password);
+  User.getUserByUsername(username, function(err, user){
+    if(err) throw err;
+    if(!user){
+      return done(null, false, {message: 'Unknown User'});
+    }
+
+    //if it does, then compares password
+    User.comparePassword(password, user.password, function(err, isMatch){
+      if(err) return done(err);
+      if(isMatch){
+        return done(null, user);
+      } else {
+        return done(null, false, {message:'Invalid Password'});
+      }
+    });
+  });
+}));
 
 //GET requests
 //listings on what to do depending on the file being opened.
@@ -43,14 +81,18 @@ router.get('/register.html', function(req, res){
 });
 
 //To handle the POST forms of the login and register pages
-router.post('/login.html', function(req, res){
-  res.sendFile(__dirname+'/login.html');
-});
+router.post('/login.html',
+  passport.authenticate("local", {
+    successRedirect: "/",
+    failureRedirect: "/register.html",
+    failureFlash: true
+  })
+);
 
 router.post('/register.html', async(req, res) =>{
   //https://vegibit.com/node-js-mongodb-user-registration/
   // First Validate The Request
-    const { error } = validate(req.body);
+    const { error } = validateUser(req.body);
     if (error) {
         console.log(error.details[0].message);
         return res.status(400).send(error.details[0].message);
