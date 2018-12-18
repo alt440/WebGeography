@@ -86,6 +86,10 @@ router.get('/register.html', function(req, res){
 
 router.get('/typeQuestion.html', function(req, res){
   res.sendFile(__dirname+'/typeQuestion.html');
+});
+
+router.get('/examMaxScore.html', function(req, res){
+  res.sendFile(__dirname+'/examMaxScore.html');
 })
 
 //To handle the POST forms of the login and register pages

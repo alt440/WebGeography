@@ -1,4 +1,8 @@
-  counterRightAnswers = 0;
+  var counterRightAnswers = 0;
+
+  //this stores the index being selected as appearing country
+  var indexAppearingCountry = -1;
+  localStorage.setItem("indexAppearingCountry", indexAppearingCountry);
 
   //local storage to maintain consistency between scripts. counts the number of right answers
   localStorage.setItem("counterRightAnswers", counterRightAnswers);
@@ -18,10 +22,15 @@
     if(choiceContinent == undefined || choiceContinent == 0){
 
       //condition to know if it is an exam
-      if(choiceTypeGame==1){}
-      value = Math.round(Math.random()*(countries.length-1));
-      console.log("img/countries/"+countries[value]+".jpg"+counterRightAnswers+" "+value);
-      return "img/countries/"+countries[value]+".jpg";
+      if(choiceTypeGame==1){
+        return manageCountriesArray();
+      }
+      else{
+        value = Math.round(Math.random()*(countries.length-1));
+        console.log("img/countries/"+countries[value]+".jpg"+counterRightAnswers+" "+value);
+        return "img/countries/"+countries[value]+".jpg";
+      }
+
     }
 
     else if(choiceContinent == 1){
@@ -52,11 +61,13 @@
 
       //condition to know if it is an exam
       if(choiceTypeGame==1){
-
+        return manageCountriesArray();
       }
-      value = Math.round(Math.random()*(countriesOceania.length-1));
-      console.log("img/countries/"+countriesOceania[value]+".jpg"+counterRightAnswers+" "+value);
-      return "img/countries/"+countriesOceania[value]+".jpg";
+      else{
+        value = Math.round(Math.random()*(countriesOceania.length-1));
+        console.log("img/countries/"+countriesOceania[value]+".jpg"+counterRightAnswers+" "+value);
+        return "img/countries/"+countriesOceania[value]+".jpg";
+      }
     }
 
     else if(choiceContinent == 6){
@@ -69,7 +80,7 @@
 
   //checks if the right answer was inputted.
   function isRightAnswer(imageSource){
-    var nameImage = imageSource.split("/");
+    /*var nameImage = imageSource.split("/");
     var onlyName = nameImage[2];
     onlyName = onlyName.split(".")[0];
     onlyName = onlyName.split("-").join(" ");
@@ -83,9 +94,10 @@
     }
     else{
       return false;
-    }
-
+    }*/
+    return true;//temporary
   }
+
 
   //starts jQuery code
   $(document).ready(function(){
@@ -94,10 +106,21 @@
     $('#picture').attr("src", chooseSource());
 
     $('#submit').click(function(){
+
+      //to determine if the exam array was previously init in same game.
+      //To know if exam is completed
+      localStorage.setItem("examArrayInit", 0);
+
         //compare answers/ see if user submitted right answer
         if(isRightAnswer($('#picture').attr("src"))){
           counterRightAnswers+=1;
           localStorage.setItem("counterRightAnswers", counterRightAnswers);
+
+          localStorage.setItem("examArrayInit", 1);
+
+          if(localStorage.getItem("typeQuestion") == 1){
+            removeSelectedCountry(localStorage.getItem("indexAppearingCountry"));
+          }
 
           //loads a new picture
           $('#picture').attr("src", chooseSource());
@@ -117,5 +140,5 @@
         }
         //if he did, reload a different picture and add 1 to counter
 
-    })
+    });
   });
