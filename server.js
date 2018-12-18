@@ -20,9 +20,16 @@ var mongoose = require('mongoose');
 var passport = require('passport');
 // Same as a PHP session
 var expressSession = require('express-session');
-app.use(expressSession({secret: 'mySecretKey'}));
+
 app.use(passport.initialize());
 app.use(passport.session());
+
+//session hash is first param. For init session with express session
+app.use(expressSession({
+  secret: 'Geo_Boss_Becoming',
+  saveUninitialized: false,
+  resave: false,
+}));
 
 //serialization and deserialization to not request password and username on each page
 passport.serializeUser(function(user, done) {
