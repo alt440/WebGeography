@@ -94,9 +94,12 @@
   //chooses the source of the next image. This generates a new image
   function chooseSource(){
     //from selectContinentForPlay.js
+    //localStorage stores information from different files
     var choiceContinent = localStorage.getItem("continentChoice");
     console.log(localStorage.getItem("continentChoice"));
     var value;
+
+    //below is a set of if conditions to choose the right countries depending on the choice the user made
     if(choiceContinent == undefined || choiceContinent == 0){
       value = Math.round(Math.random()*(countries.length-1));
       console.log("img/countries/"+countries[value]+".jpg"+counterRightAnswers+" "+value);
@@ -193,6 +196,3 @@
 
     })
   });
-
-
-  //window.onpaint = chooseSource();
