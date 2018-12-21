@@ -169,8 +169,18 @@
         else{
           //reference the mistaken country in the game over file
           localStorage.setItem("lastCountry", $('#picture').attr("src"));
-          //send score before getting to gameOver
-          window.location.href = "sendScore.html";
+
+          //depending on whether we are in exam or practice, different destinations
+          //if we are in exam mode:
+          if(localStorage.getItem("typeQuestion") == 1){
+            //send score before getting to gameOver
+            window.location.href = "sendScore.html";
+          }
+          //if in practice mode:
+          else{
+            window.location.href = "gameOver.html";
+          }
+
         }
         //if he did, reload a different picture and add 1 to counter
 

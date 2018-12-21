@@ -85,7 +85,7 @@ router.get('/homePage.html', function(req, res){
   }
 });
 
-router.get('/play.html', function(req, res){
+router.get('/play.html', ensureAuthenticated, function(req, res){
   //res.sendFile(__dirname+'/play.html');
   res.render('play');
 });
@@ -96,24 +96,24 @@ router.get('/about_us.html', function(req, res){
 });
 
 //test
-router.get('/sendScore.html', function(req, res){
+router.get('/sendScore.html', ensureAuthenticated, function(req, res){
   //res.sendFile(__dirname+'/sendScore.html');
 
   res.render('sendScore');
 });
 
-router.get('/gameOver.html', function(req, res){
+router.get('/gameOver.html', ensureAuthenticated, function(req, res){
   //res.sendFile(__dirname+'/gameOver.html');
 
   res.render('gameOver');
 });
 
-router.get('/questions.html', function(req, res){
+router.get('/questions.html', ensureAuthenticated, function(req, res){
   //res.sendFile(__dirname+'/questions.html');
   res.render('questions');
 });
 
-router.get('/selectContinentForPlay.html', function(req, res){
+router.get('/selectContinentForPlay.html', ensureAuthenticated, function(req, res){
   //res.sendFile(__dirname+'/selectContinentForPlay.html');
   res.render('selectContinentForPlay');
 });
@@ -128,17 +128,17 @@ router.get('/register.html', function(req, res){
   res.render('register');
 });
 
-router.get('/typeQuestion.html', function(req, res){
+router.get('/typeQuestion.html', ensureAuthenticated, function(req, res){
   //res.sendFile(__dirname+'/typeQuestion.html');
   res.render('typeQuestion');
 });
 
-router.get('/examMaxScore.html', function(req, res){
+router.get('/examMaxScore.html', ensureAuthenticated, function(req, res){
   //res.sendFile(__dirname+'/examMaxScore.html');
   res.render('examMaxScore');
 });
 
-router.get('/leaderboard.html', function(req, res){
+router.get('/leaderboard.html', ensureAuthenticated, function(req, res){
 
   var scoreArray = new Array(0);
   var usernameArray = new Array(0);
@@ -150,10 +150,6 @@ router.get('/leaderboard.html', function(req, res){
     console.log("DB reached!");
     var dbo = db.db("web_geography");
     var results = dbo.collection("scoreentries").find({});
-
-    results.forEach(row => {
-
-    });
 
     dbo.collection("scoreentries").find({}).toArray(function(err, result) {
       if (err) throw err;
@@ -259,6 +255,15 @@ router.post('/register.html', async(req, res) =>{
 router.get("/logout.html", function(req, res){
   req.logout();
   res.redirect("/login.html");
-})
+});
+
+//checks if the user is authenticated
+function ensureAuthenticated(req, res, next){
+  if (req.isAuthenticated()){
+    return next;
+  }
+
+  res.redirect("/login.html");
+}
 
 module.exports = router;
