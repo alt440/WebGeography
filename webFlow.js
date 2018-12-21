@@ -52,14 +52,14 @@ router.get('/', function(req, res){
   //res.sendFile(__dirname+'/homePage.html');
   //this captures the active session (if any)
   var val = req.session;
-  res.render('homePage', {user: val});
+  res.render('homePage', {username: req.user.username});
 });
 
 router.get('/homePage.html', function(req, res){
   //res.sendFile(__dirname+'/homePage.html');
   //this captures the active session (if any)
   var val = req.session;
-  res.render('homePage', {user: val});
+  res.render('homePage', {user: req.user.username});
 });
 
 router.get('/play.html', function(req, res){
@@ -105,7 +105,7 @@ router.get('/typeQuestion.html', function(req, res){
 router.get('/examMaxScore.html', function(req, res){
   //res.sendFile(__dirname+'/examMaxScore.html');
   res.render('examMaxScore');
-})
+});
 
 //To handle the POST forms of the login and register pages
 router.post('/login.html',

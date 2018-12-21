@@ -18,6 +18,8 @@ var mongoose = require('mongoose');
 // Configuring Passport. Used for user authentication, and to get the contents
 //of forms.
 var passport = require('passport');
+//cookie parser --> used with PASSPORT
+var cookieParser = require('cookie-parser');
 // Same as a PHP session
 var expressSession = require('express-session');
 
@@ -25,15 +27,21 @@ var expressSession = require('express-session');
 //by providing an easy way to display your variables on your html page.
 app.set('view engine', 'ejs');
 
+//session hash is first param. For init session with express session
+//BEFORE PASSPORT.SESSION
+app.use(expressSession({
+  secret: '#!9t&dkeB34$*bGhLK*()++DKGH@#*9530hjdh320$%&',
+  saveUninitialized: true,
+  resave: true,
+}));
+
+//b4 passport (ORDER MATTERS)
+app.use(cookieParser());
+
 app.use(passport.initialize());
 app.use(passport.session());
 
-//session hash is first param. For init session with express session
-app.use(expressSession({
-  secret: 'Geo_Boss_Becoming',
-  saveUninitialized: false,
-  resave: false,
-}));
+
 
 //serialization and deserialization to not request password and username on each page
 passport.serializeUser(function(user, done) {
@@ -52,7 +60,7 @@ var url = "mongodb://perS0nADm1N:"+encodeURIComponent("*geo@P0w3r3d*")+"@ds15509
 mongoose.connect(url, {useNewUrlParser: true});
 
 //We need to work with "MongoClient" interface in order to connect to a mongodb server.
-var MongoClient = mongodb.MongoClient;
+/*var MongoClient = mongodb.MongoClient;
 
 // Connection URL. This is where your mongodb server is running.
 
@@ -71,7 +79,7 @@ var MongoClient = mongodb.MongoClient;
     //Close connection
     db.close();
   }
-});
+});*/
 //END MONGODB connection
 
 var path = require('path');
@@ -90,7 +98,6 @@ app.use(bodyParser.urlencoded({extended: false}));
 
 //to make all webFlow valid from router variable
 app.use('/', router);
-
 
 app.listen(1337); //listens on port 1337
 console.log("Server is running on port 1337");
