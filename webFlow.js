@@ -199,7 +199,7 @@ router.post('/login.html',
     //if the login is successful, then we go to the homepage.
     successRedirect: "/",
     //if the login is unsuccessful, then we go to the register page (need to change)
-    failureRedirect: "/register.html",
+    failureRedirect: "/login.html",
     failureFlash: true
   })
 );
@@ -240,7 +240,7 @@ router.post('/register.html', async(req, res) =>{
           } else {
             //should indicate here that the user was successfully created
             //returns to the hompage if the user was created
-            return res.redirect('/homePage.html');
+            return res.redirect('/login.html');
           }
         });
         return console.log("User created!");
