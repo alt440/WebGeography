@@ -38,6 +38,8 @@ passport.use(new LocalStrategy(function(username, password, done){
     comparePassword(password, user.password, function(err, isMatch){
       if(err) return done(err);
       if(isMatch){
+        //resets the timeStamp. Next step is to send it to DB!
+        user.timeStamp = new Date().toISOString().replace(/T/, ' ').replace(/\..+/, '');
         return done(null, user);
       } else {
         return done(null, false);
@@ -50,15 +52,21 @@ passport.use(new LocalStrategy(function(username, password, done){
 //listings on what to do depending on the file being opened.
 router.get('/', function(req, res){
   //res.sendFile(__dirname+'/homePage.html');
-  //this captures the active session (if any)
-  var val = req.session;
-  res.render('homePage', {username: req.user.username});
+
+  //a parameter is included in the brackets.
+  //only works with passport session and express session! (in the right order)
+  if(req.user != undefined){
+    res.render('homePage', {username: req.user.username});
+  }
+  else{
+    res.render('homePage', {username: undefined});
+  }
 });
 
 router.get('/homePage.html', function(req, res){
   //res.sendFile(__dirname+'/homePage.html');
-  //this captures the active session (if any)
-  var val = req.session;
+
+  //a parameter is included in the brackets.
   res.render('homePage', {user: req.user.username});
 });
 
@@ -164,5 +172,11 @@ router.post('/register.html', async(req, res) =>{
 
 
 });
+
+//logout page. just redirects the user to the login page.
+router.get("/logout.html", function(req, res){
+  req.logout();
+  res.redirect("/login.html");
+})
 
 module.exports = router;
