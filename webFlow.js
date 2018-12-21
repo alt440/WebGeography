@@ -1,4 +1,5 @@
 const {User, validate, createUser, getUserById, getUserByUsername, comparePassword} = require('./models/user');
+const ScoreEntry = require('./models/scoreEntry');
 var express = require('express');
 var router = express.Router();
 
@@ -136,6 +137,22 @@ router.get('/examMaxScore.html', function(req, res){
 //To send the score of the user to the backend for handling
 router.post('/sendScore.html', async(req, res) =>{
   console.log(req.body.scoreText);
+
+  scoreEntry = new ScoreEntry({
+    username: req.user.username,
+    score: req.body.scoreText,
+  });
+
+  ScoreEntry.create(scoreEntry, function (err, user) {
+    if (err) {
+      console.log(err);
+      return next(err);
+    } else {
+      //should indicate here that the user was successfully created
+      //returns to the hompage if the user was created
+      console.log("New score entry");
+    }
+  });
   res.redirect('/gameOver.html');
 })
 

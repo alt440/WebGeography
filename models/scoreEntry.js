@@ -9,7 +9,7 @@ var scoreEntry = new Schema({
     required: true,
     unique: true,
     minlength: 5,
-    maxlength: 20
+    maxlength: 20,
   },
 
   score: {
@@ -21,4 +21,4 @@ var scoreEntry = new Schema({
 //creating model using Schema
 var ScoreEntry = mongoose.model('ScoreEntry', scoreEntry);
 
-module.exports.ScoreEntry = ScoreEntry;
+module.exports = ScoreEntry;
