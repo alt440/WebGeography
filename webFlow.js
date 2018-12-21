@@ -3,6 +3,10 @@ const ScoreEntry = require('./models/scoreEntry');
 var express = require('express');
 var router = express.Router();
 
+//to connect with the mongo client
+var mongo = require('mongodb')
+var MongoClient = require('mongodb').MongoClient;
+
 //to do the log in phase
 var passport = require('passport');
 
@@ -134,6 +138,41 @@ router.get('/examMaxScore.html', function(req, res){
   res.render('examMaxScore');
 });
 
+router.get('/leaderboard.html', function(req, res){
+
+  var scoreArray = new Array(0);
+  var usernameArray = new Array(0);
+  var url = "mongodb://perS0nADm1N:"+encodeURIComponent("*geo@P0w3r3d*")+"@ds155097.mlab.com:55097/web_geography";
+  //grab the scores entries before with a list for users and list for scores
+  MongoClient.connect(url,
+    function(err, db) {
+    if (err) throw err;
+    console.log("DB reached!");
+    var dbo = db.db("web_geography");
+    var results = dbo.collection("scoreentries").find({});
+
+    results.forEach(row => {
+
+    });
+
+    dbo.collection("scoreentries").find({}).toArray(function(err, result) {
+      if (err) throw err;
+      console.log(result);
+
+      for(var i=0;i<result.length;i++){
+        usernameArray[i]=result[i].username;
+        scoreArray[i]=result[i].score;
+      }
+      console.log(usernameArray[0]);
+      res.render('leaderboard', {userList: usernameArray,
+        scoreList: scoreArray});
+      db.close();
+    });
+
+  });
+
+});
+
 //To send the score of the user to the backend for handling
 router.post('/sendScore.html', async(req, res) =>{
   console.log(req.body.scoreText);
@@ -143,10 +182,12 @@ router.post('/sendScore.html', async(req, res) =>{
     score: req.body.scoreText,
   });
 
+  //there must be a condition to see if there is an already existing score for
+  //the user
   ScoreEntry.create(scoreEntry, function (err, user) {
     if (err) {
       console.log(err);
-      return next(err);
+      throw err;
     } else {
       //should indicate here that the user was successfully created
       //returns to the hompage if the user was created
@@ -199,7 +240,7 @@ router.post('/register.html', async(req, res) =>{
         });
         User.create(user, function (err, user) {
           if (err) {
-            return next(err);
+            throw err;
           } else {
             //should indicate here that the user was successfully created
             //returns to the hompage if the user was created

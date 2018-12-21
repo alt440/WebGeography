@@ -1,0 +1,54 @@
+<html>
+<head>
+  <title>Welcome</title>
+  <!-- we can get react files this way because we downloaded them. Look
+ at canonical path-->
+  <script src="js/react.js"></script>
+  <script src="js/react-dom.js"></script>
+  <!--this is a javascript compiler including xml. It does not like comments. Marks those as errors-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.34/browser.js">
+  </script>
+  <!--adding jQuery-->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+  <meta charset="utf-8">
+
+</head>
+<body>
+
+  <% if (userList!=undefined && scoreList!=undefined){ %>
+    <script>
+      //right way of sending an array (LOOK CAREFULLY THERES A DASH)
+      var userListCpy = <%- JSON.stringify(userList) %>;
+      //improvised way of doing it (only works with non-strings)
+      var scoreListCpy = [<%= scoreList %>];
+
+      //looks at all the scores and puts the best on top
+      var max = -1;
+      var index = 0;
+      for(var i=0;i<scoreListCpy.length;i++){
+        max = scoreListCpy[i];
+        index = i;
+        for(var j=i;j<scoreListCpy.length;j++){
+          if(scoreListCpy[j]>max){
+            max = scoreListCpy[j];
+            index = j;
+          }
+        }
+
+        if(max != scoreListCpy[i]){
+          var temp = scoreListCpy[index];
+          var temp2 = userListCpy[index];
+          scoreListCpy[index] = scoreListCpy[i];
+          userListCpy[index] = userListCpy[i];
+          scoreListCpy[i]=temp;
+          userListCpy[i] = temp2;
+        }
+
+        document.write('<label>'+userListCpy[i]+' </label>'+
+          '<label>'+scoreListCpy[i]+'</label> <br/>');
+      }
+    </script>
+  <% } %>
+</body>
+</html>
