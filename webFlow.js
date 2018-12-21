@@ -55,9 +55,12 @@ router.get('/', function(req, res){
 
   //a parameter is included in the brackets.
   //only works with passport session and express session! (in the right order)
+
+  //this is to determine if the user has logged in. If so, sends a username
   if(req.user != undefined){
     res.render('homePage', {username: req.user.username});
   }
+  //otherwise no username set, nothing appears on homepage.
   else{
     res.render('homePage', {username: undefined});
   }
@@ -67,7 +70,14 @@ router.get('/homePage.html', function(req, res){
   //res.sendFile(__dirname+'/homePage.html');
 
   //a parameter is included in the brackets.
-  res.render('homePage', {user: req.user.username});
+  //this is to determine if the user has logged in. If so, sends a username
+  if(req.user != undefined){
+    res.render('homePage', {username: req.user.username});
+  }
+  //otherwise no username set, nothing appears on homepage.
+  else{
+    res.render('homePage', {username: undefined});
+  }
 });
 
 router.get('/play.html', function(req, res){
@@ -80,8 +90,16 @@ router.get('/about_us.html', function(req, res){
   res.render('about_us');
 });
 
+//test
+router.get('/sendScore.html', function(req, res){
+  //res.sendFile(__dirname+'/sendScore.html');
+
+  res.render('sendScore');
+});
+
 router.get('/gameOver.html', function(req, res){
   //res.sendFile(__dirname+'/gameOver.html');
+
   res.render('gameOver');
 });
 
@@ -114,6 +132,12 @@ router.get('/examMaxScore.html', function(req, res){
   //res.sendFile(__dirname+'/examMaxScore.html');
   res.render('examMaxScore');
 });
+
+//To send the score of the user to the backend for handling
+router.post('/sendScore.html', async(req, res) =>{
+  console.log(req.body.scoreText);
+  res.redirect('/gameOver.html');
+})
 
 //To handle the POST forms of the login and register pages
 router.post('/login.html',

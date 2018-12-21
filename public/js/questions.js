@@ -169,7 +169,8 @@
         else{
           //reference the mistaken country in the game over file
           localStorage.setItem("lastCountry", $('#picture').attr("src"));
-          window.location.href = "gameOver.html";
+          //send score before getting to gameOver
+          window.location.href = "sendScore.html";
         }
         //if he did, reload a different picture and add 1 to counter
 
