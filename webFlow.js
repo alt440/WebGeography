@@ -3,6 +3,8 @@ const ScoreEntry = require('./models/scoreEntry');
 var express = require('express');
 var router = express.Router();
 
+//to connect with db
+var url = "mongodb://perS0nADm1N:"+encodeURIComponent("*geo@P0w3r3d*")+"@ds155097.mlab.com:55097/web_geography";
 //to connect with the mongo client
 var mongo = require('mongodb')
 var MongoClient = require('mongodb').MongoClient;
@@ -138,11 +140,11 @@ router.get('/examMaxScore.html', ensureAuthenticated, function(req, res){
   res.render('examMaxScore');
 });
 
-router.get('/leaderboard.html', ensureAuthenticated, function(req, res){
+router.get('/leaderboard.html', function(req, res){
 
   var scoreArray = new Array(0);
   var usernameArray = new Array(0);
-  var url = "mongodb://perS0nADm1N:"+encodeURIComponent("*geo@P0w3r3d*")+"@ds155097.mlab.com:55097/web_geography";
+  //var url = "mongodb://perS0nADm1N:"+encodeURIComponent("*geo@P0w3r3d*")+"@ds155097.mlab.com:55097/web_geography";
   //grab the scores entries before with a list for users and list for scores
   MongoClient.connect(url,
     function(err, db) {
@@ -179,17 +181,44 @@ router.post('/sendScore.html', async(req, res) =>{
   });
 
   //there must be a condition to see if there is an already existing score for
-  //the user
-  ScoreEntry.create(scoreEntry, function (err, user) {
-    if (err) {
-      console.log(err);
-      throw err;
-    } else {
-      //should indicate here that the user was successfully created
-      //returns to the hompage if the user was created
-      console.log("New score entry");
-    }
-  });
+  //the user, as username cannot be replicated
+  let user = await ScoreEntry.findOne({ username: req.user.username });
+  if (user) {
+      //we need to update the user's score if the new score is greater
+      if(req.body.scoreText > user.score){
+        MongoClient.connect(url,
+          function(err, db) {
+
+            var dbo = db.db("web_geography");
+            //query to set the new values
+            var newvalues = { $set: {score: req.body.scoreText} };
+            dbo.collection("scoreentries").updateOne(user, newvalues, function(err, res) {
+              if (err)
+                throw err;
+
+              console.log("1 document updated");
+              db.close();
+            });
+
+        });
+      }
+
+      //if the new score isnt greater, then do nothing.
+
+  }
+  else{
+    ScoreEntry.create(scoreEntry, function (err, user) {
+      if (err) {
+        console.log(err);
+        throw err;
+      } else {
+        //should indicate here that the user was successfully created
+        //returns to the hompage if the user was created
+        console.log("New score entry");
+      }
+    });
+  }
+
   res.redirect('/gameOver.html');
 })
 
@@ -260,7 +289,7 @@ router.get("/logout.html", function(req, res){
 //checks if the user is authenticated
 function ensureAuthenticated(req, res, next){
   if (req.isAuthenticated()){
-    return next;
+    next();
   }
 
   res.redirect("/login.html");
