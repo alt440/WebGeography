@@ -33,4 +33,8 @@ $(document).ready(function(){
   $('#yes').click(function(){
     window.location.href = "typeQuestion.html";
   })
+
+  $('#leaderboard').click(function(){
+    window.location.href = "leaderboard.html";
+  })
 });
