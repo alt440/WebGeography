@@ -31,8 +31,8 @@ app.set('view engine', 'ejs');
 //BEFORE PASSPORT.SESSION
 app.use(expressSession({
   secret: '#!9t&dkeB34$*bGhLK*()++DKGH@#*9530hjdh320$%&',
-  saveUninitialized: true,
-  resave: true,
+  saveUninitialized: false,
+  resave: false,
 }));
 
 //b4 passport (ORDER MATTERS)
