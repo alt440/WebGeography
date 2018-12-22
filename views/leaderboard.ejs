@@ -16,37 +16,140 @@
 </head>
 <body>
 
-  <% if (userList!=undefined && scoreList!=undefined){ %>
+  <% if (userList!=undefined && scoreList!=undefined
+      && continentChoiceList!=undefined){ %>
     <script>
       //right way of sending an array (LOOK CAREFULLY THERES A DASH)
       var userListCpy = <%- JSON.stringify(userList) %>;
       //improvised way of doing it (only works with non-strings)
       var scoreListCpy = [<%= scoreList %>];
+      var continentChoiceListCpy = <%- JSON.stringify(continentChoiceList) %>;
 
-      //looks at all the scores and puts the best on top
-      var max = -1;
-      var index = 0;
-      for(var i=0;i<scoreListCpy.length;i++){
-        max = scoreListCpy[i];
-        index = i;
-        for(var j=i;j<scoreListCpy.length;j++){
-          if(scoreListCpy[j]>max){
-            max = scoreListCpy[j];
-            index = j;
-          }
+      //class all the scores by category. Notice alphabetical order
+      //0 or undefined: All
+      //1: Africa
+      //2: Asia
+      //3: Europe
+      //4: North America
+      //5: Oceania
+      //6: South America
+
+      var africaScoreList = new Array(0);
+      var africaUserList = new Array(0);
+      //get all those from africa
+      //create another index to follow africa lists
+      var j = 0;
+
+      var asiaScoreList = new Array(0);
+      var asiaUserList = new Array(0);
+      //create another index to follow asia lists
+      var k = 0;
+
+      var europeScoreList = new Array(0);
+      var europeUserList = new Array(0);
+      //create another index to follow europe lists
+      var l = 0;
+
+      var NAScoreList = new Array(0);
+      var NAUserList = new Array(0);
+      //create another index to follow north america lists
+      var m = 0;
+
+      var oceaniaScoreList = new Array(0);
+      var oceaniaUserList = new Array(0);
+      //create another index to follow oceania lists
+      var n = 0;
+
+      var SAScoreList = new Array(0);
+      var SAUserList = new Array(0);
+      //create another index to follow south america lists
+      var o = 0;
+
+      var allScoreList = new Array(0);
+      var allUserList = new Array(0);
+      //create another index to follow all lists
+      var p = 0;
+
+      for(var i=0;i<continentChoiceListCpy.length;i++){
+        if(continentChoiceListCpy[i]==1){
+          africaScoreList[j]=scoreListCpy[i];
+          africaUserList[j]=userListCpy[i];
+          j++;
         }
-
-        if(max != scoreListCpy[i]){
-          var temp = scoreListCpy[index];
-          var temp2 = userListCpy[index];
-          scoreListCpy[index] = scoreListCpy[i];
-          userListCpy[index] = userListCpy[i];
-          scoreListCpy[i]=temp;
-          userListCpy[i] = temp2;
+        else if(continentChoiceListCpy[i]==2){
+          asiaScoreList[k]=scoreListCpy[i];
+          asiaUserList[k]=userListCpy[i];
+          k++;
         }
+        else if(continentChoiceListCpy[i]==3){
+          europeScoreList[l]=scoreListCpy[i];
+          europeUserList[l]=userListCpy[i];
+          l++;
+        }
+        else if(continentChoiceListCpy[i]==4){
+          NAScoreList[m]=scoreListCpy[i];
+          NAUserList[m]=userListCpy[i];
+          m++;
+        }
+        else if(continentChoiceListCpy[i]==5){
+          oceaniaScoreList[n]=scoreListCpy[i];
+          oceaniaUserList[n]=userListCpy[i];
+          n++;
+        }
+        else if(continentChoiceListCpy[i]==6){
+          SAScoreList[o]=scoreListCpy[i];
+          SAUserList[o]=userListCpy[i];
+          o++;
+        }
+        else{
+          allScoreList[p]=scoreListCpy[i];
+          allUserList[p]=userListCpy[i];
+          p++;
+        }
+      }
 
-        document.write('<label>'+userListCpy[i]+' </label>'+
-          '<label>'+scoreListCpy[i]+'</label> <br/>');
+      //printing all of the arrays' scores with usernames
+      document.write("<h2>Weekly High Scores</h2><br/>");
+      //africa
+      document.write("<label>Africa</label> <hr/>");
+      for(var i=0;i<africaUserList.length;i++){
+        document.write("<label>"+africaUserList[i]+" "+africaScoreList[i]+"</label><br/>");
+      }
+
+      //asia
+      document.write("<br/><label>Asia</label> <hr/>");
+      for(var i=0;i<asiaUserList.length;i++){
+        document.write("<label>"+asiaUserList[i]+" "+asiaScoreList[i]+"</label><br/>");
+      }
+
+      //europe
+      document.write("<br/><label>Europe</label> <hr/>");
+      for(var i=0;i<europeUserList.length;i++){
+        document.write("<label>"+europeUserList[i]+" "+europeScoreList[i]+"</label><br/>");
+      }
+
+      //north america
+      document.write("<br/><label>North America</label> <hr/>");
+      for(var i=0;i<NAUserList.length;i++){
+        document.write("<label>"+NAUserList[i]+" "+NAScoreList[i]+"</label><br/>");
+      }
+
+      //oceania
+      document.write("<br/><label>Oceania</label> <hr/>");
+      for(var i=0;i<oceaniaUserList.length;i++){
+        document.write("<label>"+oceaniaUserList[i]+" "+oceaniaScoreList[i]+"</label><br/>");
+      }
+
+      //south america
+      document.write("<br/><label>South America</label> <hr/>");
+      for(var i=0;i<SAUserList.length;i++){
+        document.write("<label>"+SAUserList[i]+" "+SAScoreList[i]+"</label><br/>");
+      }
+
+      //all
+      document.write("<br/><label>All Continents</label> <hr/>");
+      for(var i=0;i<allUserList.length;i++){
+        document.write("<label>"+allUserList[i]+" "+allScoreList[i]+"</label><br/>");
       }
     </script>
   <% } %>
