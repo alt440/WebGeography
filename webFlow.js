@@ -159,13 +159,49 @@ router.get('/leaderboard.html', function(req, res){
       if (err) throw err;
       console.log(result);
 
+      //counting scores for each type. If it surpasses ten, the other scores are deleted
+      var africaCount = 0;
+      var asiaCount = 0;
+      var europeCount = 0;
+      var NACount = 0;
+      var oceaniaCount = 0;
+      var SACount = 0;
+      var allCount = 0;
+
       for(var i=0;i<result.length;i++){
         //checking if timestamp is expired. if it is, delete the score
         if(new Date().getTime() - result[i].timeStamp >= 604800000){
           //delete the object
           dbo.collection("scoreentries").deleteMany({timeStamp: result[i].timeStamp});
+          continue;
         }
 
+        if(result[i].continentChoice == 1 && africaCount < 10){
+          africaCount+=1;
+        }
+        else if(result[i].continentChoice == 2 && asiaCount < 10){
+          asiaCount+=1;
+        }
+        else if(result[i].continentChoice == 3 && europeCount < 10){
+          europeCount+=1;
+        }
+        else if(result[i].continentChoice == 4 && NACount < 10){
+          NACount+=1;
+        }
+        else if(result[i].continentChoice == 5 && oceaniaCount < 10){
+          oceaniaCount+=1;
+        }
+        else if(result[i].continentChoice == 6 && SACount < 10){
+          SACount+=1;
+        }
+        else if((result[i].continentChoice == 0
+          || result[i].continentChoice == undefined) && allCount < 10){
+          allCount+=1;
+        }
+        else{
+          //deletes by timestamp as timestamp is very unique for each score
+          dbo.collection("scoreentries").deleteMany({timeStamp: result[i].timeStamp});
+        }
         usernameArray[i]=result[i].username;
         scoreArray[i]=result[i].score;
         continentChoiceArray[i]=result[i].continentChoice;
@@ -220,7 +256,7 @@ router.post('/sendScore.html', async(req, res) =>{
 
   }
   else{
-    //create a new score entry for the user
+    //create a new score entry for the user. Verifies on leaderboard page if it merits to stay in DB.
     ScoreEntry.create(scoreEntry, function (err, user) {
       if (err) {
         console.log(err);
