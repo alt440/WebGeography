@@ -1,3 +1,6 @@
+//this model stores the high scores for the different continent choice plays in
+//exam mode
+
 var mongoose = require('mongoose'); //used to communicate with the MongoDB database
 var Schema = mongoose.Schema;
 
@@ -7,7 +10,6 @@ var scoreEntry = new Schema({
   username: {
     type: String,
     required: true,
-    unique: true,
     minlength: 5,
     maxlength: 20,
   },
@@ -15,7 +17,17 @@ var scoreEntry = new Schema({
   score: {
     type: Number,
     required: true,
-  }
+  },
+
+  continentChoice: {
+    type: Number,
+    required: true,
+  },
+
+  timeStamp:{
+    type: String,
+    required: true,
+  },
 });
 
 //creating model using Schema
