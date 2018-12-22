@@ -32,7 +32,7 @@
       }
 
     }
-
+    //Africa
     else if(choiceContinent == 1){
 
       //condition to know if it is an exam
@@ -45,7 +45,7 @@
         return "img/countries/"+countriesAfrica[value]+".jpg";
       }
     }
-
+    //Asia
     else if(choiceContinent == 2){
 
       //condition to know if it is an exam
@@ -58,7 +58,7 @@
         return "img/countries/"+countriesAsia[value]+".jpg";
       }
     }
-
+    //Europe
     else if(choiceContinent == 3){
       //condition to know if it is an exam
       if(choiceTypeGame==1){
@@ -70,7 +70,7 @@
         return "img/countries/"+countriesEurope[value]+".jpg";
       }
     }
-
+    //North America
     else if(choiceContinent == 4){
 
       //condition to know if it is an exam
@@ -83,7 +83,7 @@
         return "img/countries/"+countriesNorthAmerica[value]+".jpg";
       }
     }
-
+    //Oceania
     else if(choiceContinent == 5){
 
       //condition to know if it is an exam
@@ -96,7 +96,7 @@
         return "img/countries/"+countriesOceania[value]+".jpg";
       }
     }
-
+    //South America
     else if(choiceContinent == 6){
 
       //condition to know if it is an exam
