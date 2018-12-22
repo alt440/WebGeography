@@ -144,6 +144,7 @@ router.get('/leaderboard.html', function(req, res){
 
   var scoreArray = new Array(0);
   var usernameArray = new Array(0);
+  var continentChoiceArray = new Array(0);
   //var url = "mongodb://perS0nADm1N:"+encodeURIComponent("*geo@P0w3r3d*")+"@ds155097.mlab.com:55097/web_geography";
   //grab the scores entries before with a list for users and list for scores
   MongoClient.connect(url,
@@ -153,17 +154,25 @@ router.get('/leaderboard.html', function(req, res){
     var dbo = db.db("web_geography");
     var results = dbo.collection("scoreentries").find({});
 
-    dbo.collection("scoreentries").find({}).toArray(function(err, result) {
+    dbo.collection("scoreentries").find({ $query: {}, $orderby: {score: -1}})
+      .toArray(function(err, result) {
       if (err) throw err;
       console.log(result);
 
       for(var i=0;i<result.length;i++){
+        //checking if timestamp is expired. if it is, delete the score
+        if(new Date().getTime() - result[i].timeStamp >= 604800000){
+          //delete the object
+          dbo.collection("scoreentries").deleteMany({timeStamp: result[i].timeStamp});
+        }
+
         usernameArray[i]=result[i].username;
         scoreArray[i]=result[i].score;
+        continentChoiceArray[i]=result[i].continentChoice;
       }
       console.log(usernameArray[0]);
       res.render('leaderboard', {userList: usernameArray,
-        scoreList: scoreArray});
+        scoreList: scoreArray, continentChoiceList: continentChoiceArray});
       db.close();
     });
 
@@ -178,11 +187,15 @@ router.post('/sendScore.html', async(req, res) =>{
   scoreEntry = new ScoreEntry({
     username: req.user.username,
     score: req.body.scoreText,
+    continentChoice: req.body.continentChoiceText,
+    timeStamp: new Date().getTime(),
   });
 
   //there must be a condition to see if there is an already existing score for
   //the user, as username cannot be replicated
-  let user = await ScoreEntry.findOne({ username: req.user.username });
+  let user = await ScoreEntry.findOne({ username: req.user.username,
+          continentChoice: req.body.continentChoiceText});
+  //if the user already exist in the leaderboard of the specific continent choice
   if (user) {
       //we need to update the user's score if the new score is greater
       if(req.body.scoreText > user.score){
@@ -207,6 +220,7 @@ router.post('/sendScore.html', async(req, res) =>{
 
   }
   else{
+    //create a new score entry for the user
     ScoreEntry.create(scoreEntry, function (err, user) {
       if (err) {
         console.log(err);
