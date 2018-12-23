@@ -12,7 +12,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
   <meta charset="utf-8">
-
+  <link rel="stylesheet" href="css/leaderboard.css">
 </head>
 <body>
 
@@ -111,46 +111,164 @@
       //printing all of the arrays' scores with usernames
       document.write("<h2>Weekly High Scores</h2><br/>");
       //africa
-      document.write("<label>Africa</label> <hr/>");
-      for(var i=0;i<africaUserList.length;i++){
-        document.write("<label>"+africaUserList[i]+" "+africaScoreList[i]+"</label><br/>");
+      document.write("<label class='continent'>Africa</label> <hr/>");
+      if(africaUserList.length > 0){
+        document.write("<table>");
+        document.write("<tr>"+
+                          "<td><label class='title'>Username</label></td>"+
+                          "<td class='secondElement'><label class='title'>Score</label></td>"+
+                        "</tr>");
+        for(var i=0;i<africaUserList.length;i++){
+          if(i%2==0){
+            document.write("<tr class='green'><td><label>"+africaUserList[i]+"</label></td><td class='secondElement'><label id='score'>"+africaScoreList[i]+"</label></td></tr>");
+          }
+          else{
+            document.write("<tr class='forest'><td><label>"+africaUserList[i]+"</label></td><td class='secondElement'><label id='score'>"+africaScoreList[i]+"</label></td></tr>");
+          }
+        }
+
+        //end table
+        document.write("</table>");
       }
 
+      //------------------------------------------------------------------------------------
       //asia
-      document.write("<br/><label>Asia</label> <hr/>");
-      for(var i=0;i<asiaUserList.length;i++){
-        document.write("<label>"+asiaUserList[i]+" "+asiaScoreList[i]+"</label><br/>");
+      document.write("<br/><label class='continent'>Asia</label> <hr/>");
+      if(asiaUserList.length > 0){
+
+        document.write("<table>");
+        document.write("<tr>"+
+                          "<td><label class='title'>Username</label></td>"+
+                          "<td class='secondElement'><label class='title'>Score</label></td>"+
+                        "</tr>");
+        for(var i=0;i<asiaUserList.length;i++){
+          if(i%2==0){
+            document.write("<tr class='green'><td><label>"+asiaUserList[i]+"</label></td><td class='secondElement'><label id='score'>"+asiaScoreList[i]+"</label></td></tr>");
+          }
+          else{
+            document.write("<tr class='forest'><td><label>"+asiaUserList[i]+"</label></td><td class='secondElement'><label id='score'>"+asiaScoreList[i]+"</label></td></tr>");
+          }
+        }
+
+        //end table
+        document.write("</table>");
       }
 
+      //------------------------------------------------------------------------------------
       //europe
-      document.write("<br/><label>Europe</label> <hr/>");
-      for(var i=0;i<europeUserList.length;i++){
-        document.write("<label>"+europeUserList[i]+" "+europeScoreList[i]+"</label><br/>");
+      document.write("<br/><label class='continent'>Europe</label> <hr/>");
+      if(europeUserList.length > 0){
+
+        document.write("<table>");
+        document.write("<tr>"+
+                          "<td><label class='title'>Username</label></td>"+
+                          "<td class='secondElement'><label class='title'>Score</label></td>"+
+                        "</tr>");
+        for(var i=0;i<europeUserList.length;i++){
+          if(i%2==0){
+            document.write("<tr class='green'><td><label>"+europeUserList[i]+"</label></td><td class='secondElement'><label id='score'>"+europeScoreList[i]+"</label></td></tr>");
+          }
+          else{
+            document.write("<tr class='forest'><td><label>"+europeUserList[i]+"</label></td><td class='secondElement'><label id='score'>"+europeScoreList[i]+"</label></td></tr>");
+          }
+        }
+
+        //end table
+        document.write("</table>");
       }
 
+      //------------------------------------------------------------------------------------
       //north america
-      document.write("<br/><label>North America</label> <hr/>");
-      for(var i=0;i<NAUserList.length;i++){
-        document.write("<label>"+NAUserList[i]+" "+NAScoreList[i]+"</label><br/>");
+      document.write("<br/><label class='continent'>North America</label> <hr/>");
+      if(NAUserList.length > 0){
+
+        document.write("<table>");
+        document.write("<tr>"+
+                          "<td><label class='title'>Username</label></td>"+
+                          "<td class='secondElement'><label class='title'>Score</label></td>"+
+                        "</tr>");
+        for(var i=0;i<NAUserList.length;i++){
+          if(i%2==0){
+            document.write("<tr class='green'><td><label>"+NAUserList[i]+"</label></td><td class='secondElement'><label id='score'>"+NAScoreList[i]+"</label></td></tr>");
+          }
+          else{
+            document.write("<tr class='forest'><td><label>"+NAUserList[i]+"</label></td><td class='secondElement'><label id='score'>"+NAScoreList[i]+"</label></td></tr>");
+          }
+        }
+
+        //end table
+        document.write("</table>");
       }
 
+      //------------------------------------------------------------------------------------
       //oceania
-      document.write("<br/><label>Oceania</label> <hr/>");
-      for(var i=0;i<oceaniaUserList.length;i++){
-        document.write("<label>"+oceaniaUserList[i]+" "+oceaniaScoreList[i]+"</label><br/>");
+      document.write("<br/><label class='continent'>Oceania</label> <hr/>");
+      if(oceaniaUserList.length > 0){
+
+        document.write("<table>");
+        document.write("<tr>"+
+                          "<td><label class='title'>Username</label></td>"+
+                          "<td class='secondElement'><label class='title'>Score</label></td>"+
+                        "</tr>");
+        for(var i=0;i<oceaniaUserList.length;i++){
+          if(i%2==0){
+            document.write("<tr class='green'><td><label>"+oceaniaUserList[i]+"</label></td><td class='secondElement'><label id='score'>"+oceaniaScoreList[i]+"</label></td></tr>");
+          }
+          else{
+            document.write("<tr class='forest'><td><label>"+oceaniaUserList[i]+"</label></td><td class='secondElement'><label id='score'>"+oceaniaScoreList[i]+"</label></td></tr>");
+          }
+        }
+
+        //end table
+        document.write("</table>");
       }
 
+      //------------------------------------------------------------------------------------
       //south america
-      document.write("<br/><label>South America</label> <hr/>");
-      for(var i=0;i<SAUserList.length;i++){
-        document.write("<label>"+SAUserList[i]+" "+SAScoreList[i]+"</label><br/>");
+      document.write("<br/><label class='continent'>South America</label> <hr/>");
+      if(SAUserList.length > 0){
+
+        document.write("<table>");
+        document.write("<tr>"+
+                          "<td><label class='title'>Username</label></td>"+
+                          "<td class='secondElement'><label class='title'>Score</label></td>"+
+                        "</tr>");
+        for(var i=0;i<SAUserList.length;i++){
+          if(i%2==0){
+            document.write("<tr class='green'><td><label>"+SAUserList[i]+"</label></td><td class='secondElement'><label id='score'>"+SAScoreList[i]+"</label></td></tr>");
+          }
+          else{
+            document.write("<tr class='forest'><td><label>"+SAUserList[i]+"</label></td><td class='secondElement'><label id='score'>"+SAScoreList[i]+"</label></td></tr>");
+          }
+        }
+
+        //end table
+        document.write("</table>");
       }
 
+      //------------------------------------------------------------------------------------
       //all
-      document.write("<br/><label>All Continents</label> <hr/>");
-      for(var i=0;i<allUserList.length;i++){
-        document.write("<label>"+allUserList[i]+" "+allScoreList[i]+"</label><br/>");
+      document.write("<br/><label class='continent'>All Continents</label> <hr/>");
+      if(allUserList.length > 0){
+
+        document.write("<table>");
+        document.write("<tr>"+
+                          "<td><label class='title'>Username</label></td>"+
+                          "<td class='secondElement'><label class='title'>Score</label></td>"+
+                        "</tr>");
+        for(var i=0;i<allUserList.length;i++){
+          if(i%2==0){
+            document.write("<tr class='green'><td><label>"+allUserList[i]+"</label></td><td class='secondElement'><label id='score'>"+allScoreList[i]+"</label></td></tr>");
+          }
+          else{
+            document.write("<tr class='forest'><td><label>"+allUserList[i]+"</label></td><td class='secondElement'><label id='score'>"+allScoreList[i]+"</label></td></tr>");
+          }
+        }
+
+        //end table
+        document.write("</table>");
       }
+
     </script>
   <% } %>
 </body>
