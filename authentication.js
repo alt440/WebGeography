@@ -27,8 +27,12 @@ passport.deserializeUser(function(id, done) {
 //set strategy. Responds to the "authenticate" function on login page
 passport.use(new LocalStrategy(function(username, password, done){
   //looks at whether the username exists in DB
-  console.log(username);
-  console.log(password);
+  //console.log(username);
+  //console.log(password);
+  //check whether one is undefined
+  if(username==undefined || password==undefined){
+    return done(null, false);
+  }
   getUserByUsername(username, function(err, user){
     if(err) throw err;
     if(!user){
@@ -53,10 +57,9 @@ passport.use(new LocalStrategy(function(username, password, done){
 router.post('/login.html',
   passport.authenticate("local", {
     //if the login is successful, then we go to the homepage.
-    successRedirect: "/",
+    successRedirect : "/",
     //if the login is unsuccessful, then we go to the register page (need to change)
-    failureRedirect: "/login.html",
-    failureFlash: true
+    failureRedirect : "/login.html"
   })
 );
 
