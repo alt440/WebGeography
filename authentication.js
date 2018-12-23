@@ -60,6 +60,7 @@ passport.use(new LocalStrategy(function(username, password, done){
 router.post('/login.html',
   passport.authenticate("local", {
     //if the login is successful, then we go to the homepage.
+    //(NOTE: Message of "Login unsuccessful" from login page is unset only if gone to homepage after)
     successRedirect : "/",
     //if the login is unsuccessful, then we go to the register page (need to change)
     failureRedirect : "/login.html"
@@ -118,7 +119,7 @@ router.post('/register.html', async(req, res) =>{
 //logout page. just redirects the user to the login page.
 router.get("/logout.html", function(req, res){
   req.logout();
-  res.redirect("/login.html");
+  res.redirect("/");
 });
 
 //checks if the user is authenticated
