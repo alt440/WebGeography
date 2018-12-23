@@ -29,9 +29,7 @@ router.get('/leaderboard.html', function(req, res){
     if (err) throw err;
     console.log("DB reached!");
     var dbo = db.db("web_geography");
-    var results = dbo.collection("scoreentries").find({});
-
-    dbo.collection("scoreentries").find({ $query: {}, $orderby: {score: -1}})
+    dbo.collection("scoreentries").find().sort({score: -1})
       .toArray(function(err, result) {
       if (err) throw err;
       console.log(result);
@@ -46,6 +44,7 @@ router.get('/leaderboard.html', function(req, res){
       var allCount = 0;
 
       for(var i=0;i<result.length;i++){
+        console.log(result[i].score);
         //checking if timestamp is expired. if it is, delete the score
         if(new Date().getTime() - result[i].timeStamp >= 604800000){
           //delete the object
