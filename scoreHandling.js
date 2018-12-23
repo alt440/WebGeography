@@ -29,6 +29,7 @@ router.get('/leaderboard.html', function(req, res){
     if (err) throw err;
     console.log("DB reached!");
     var dbo = db.db("web_geography");
+    //sorts the list before giving the result set
     dbo.collection("scoreentries").find().sort({score: -1})
       .toArray(function(err, result) {
       if (err) throw err;
@@ -144,8 +145,14 @@ router.post('/sendScore.html', async(req, res) =>{
       }
     });
   }
+  console.log("Has finished: "+req.body.hasFinished);
+  if(req.body.hasFinished == 1){
+    res.redirect('/examMaxScore.html');
+  }
+  else{
+    res.redirect('/gameOver.html');
+  }
 
-  res.redirect('/gameOver.html');
 });
 
 //checks if the user is authenticated

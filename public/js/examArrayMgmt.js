@@ -67,7 +67,7 @@ function manageCountriesArray(){
 
   localStorage.setItem("indexAppearingCountry",value);
   //bool to know if exam array was previously initialized
-  localStorage.setItem("examArrayInit", true);
+  localStorage.setItem("examArrayInit", 1);
 
   console.log("img/countries/"+examCountriesArray[value]+".jpg"+counterRightAnswers+" "+value);
   return "img/countries/"+examCountriesArray[value]+".jpg";
@@ -80,9 +80,9 @@ function removeSelectedCountry(index){
 
   var examArrayInit = localStorage.getItem("examArrayInit");
 
-  if(localStorage.getItem("examArrayInit") == true && examCountriesArray.length == 0){
+  if(localStorage.getItem("examArrayInit") == 1 && examCountriesArray.length == 0){
 
-    //to jump to other page (winning page)
-    window.location.href = "examMaxScore.html";
+    //to jump to page that will send the score, then to winning page
+    window.location.href = "sendScore.html";
   }
 }

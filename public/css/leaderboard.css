@@ -42,3 +42,13 @@ table{
 tr {
   border: 2px solid;
 }
+
+#homePage{
+  font-family: medieval;
+  font-size: 20px;
+}
+
+#homePage:hover{
+  background-image: url('../img/background-buttons.jpg');
+  background-size: auto 100%;
+}
