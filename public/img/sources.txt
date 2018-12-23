@@ -29,3 +29,6 @@ https://darkroom-cdn.s3.amazonaws.com/2016/10/AFP-Getty_ETHIOPIA-CULTURE-TRIBES-
 
 favicon.ico:
 https://pbs.twimg.com/profile_images/451333905442803712/W5mYLAeD.jpeg
+
+selectContinentForPlay:
+https://wallpapercave.com/wp/5Yh1wEx.jpg
