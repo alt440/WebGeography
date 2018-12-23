@@ -70,3 +70,20 @@
   background-image: url('../img/background-buttons.jpg');
   background-size: auto 100%;
 }
+
+#message{
+  margin-left: 30%;
+}
+
+#returnHomePage{
+  width: 25%;
+  margin-left: 40%;
+  margin-right: 30%;
+  font-family: medieval;
+  font-size: 18px;
+}
+
+#returnHomePage:hover{
+  background-image: url('../img/background-buttons.jpg');
+  background-size: auto 100%;
+}

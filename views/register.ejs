@@ -3,6 +3,11 @@
   <meta charset="utf-8">
 
   <title>Register</title>
+
+  <!--adding jQuery-->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+  <script src="js/register.js"></script>
   <link rel="stylesheet" href="css/register.css">
 </head>
 
@@ -20,6 +25,13 @@
       <input id="submit" type="submit" value="Submit">
     </form>
   </div>
+
+  <% if (message!= undefined){ %>
+    <label id="message"><%= message %></label>
+  <% } %>
+
+  <!--refer to it as submit bc want same physical attributes-->
+  <input id="returnHomePage" type="button" value="Return to Home Page">
 </body>
 
 </html>

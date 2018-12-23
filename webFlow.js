@@ -60,12 +60,19 @@ router.get('/selectContinentForPlay.html', ensureAuthenticated, function(req, re
 
 router.get('/login.html', function(req, res){
   //res.sendFile(__dirname+'/login.html');
-  res.render('login');
+  var message = req.session['message'];
+  console.log(message);
+  //set the field by using the req.session
+  req.session['message'] = undefined;
+  res.render('login', {message: message});
 });
 
 router.get('/register.html', function(req, res){
   //res.sendFile(__dirname+'/register.html');
-  res.render('register');
+  var message = req.session['message'];
+  //set the field by using the req.session
+  req.session['message'] = undefined;
+  res.render('register', {message: message});
 });
 
 router.get('/typeQuestion.html', ensureAuthenticated, function(req, res){
