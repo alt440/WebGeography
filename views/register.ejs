@@ -3,18 +3,23 @@
   <meta charset="utf-8">
 
   <title>Register</title>
+  <link rel="stylesheet" href="css/register.css">
 </head>
 
 <body>
-  <form method = "post" action='/register.html'>
-    <!--NAME IDENTIFIER for nodejs to recognize param-->
-    <label>Username: <input name="username" type="text"></label><br/>
-    <label>Password: <input name="password" type="password"></label><br/>
-    <label>Email: <input name="email" type="text"></label>
+  <p id="registerTitle">Register</p>
 
-    <br/><br/>
-    <input type="submit" value="Submit">
-  </form>
+  <div id="surroundForm">
+    <form method = "post" action='/register.html'>
+      <!--NAME IDENTIFIER for nodejs to recognize param-->
+      <label id="userField">Username: <input id="username" name="username" type="text"></label><br/>
+      <label id="passField">Password: <input id="password" name="password" type="password"></label><br/>
+      <label id="emailField">Email: <input id="email" name="email" type="text"></label>
+
+      <br/><br/>
+      <input id="submit" type="submit" value="Submit">
+    </form>
+  </div>
 </body>
 
 </html>
