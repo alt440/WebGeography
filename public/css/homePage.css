@@ -41,6 +41,7 @@
 .slideshow-container {
   max-width: 1000px;
   position: relative;
+  top: 15px;
   margin: auto;
 }
 
@@ -128,4 +129,19 @@
 @keyframes fade {
   from {opacity: .4}
   to {opacity: 1}
+}
+
+#greet{
+  position: relative;
+  top: 10px;
+}
+
+#logout{
+  float: right;
+  font-family: medieval;
+}
+
+#logout:hover{
+  background-image: url('../img/background-buttons.jpg');
+  background-size: auto 100%;
 }

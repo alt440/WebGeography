@@ -2,17 +2,41 @@
 <head>
   <meta charset="utf-8">
   <title>Log In</title>
+
+  <!--adding jQuery-->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="css/login.css">
 </head>
 
 <body>
-  <form method = "post">
-    <!--NAME IDENTIFIER for nodejs to recognize param-->
-    <label>Username: <input name="username" type="text"></label><br/>
-    <label>Password: <input name="password" type="password"></label>
+  <p id="logInTitle">Log In</p>
 
-    <br/><br/>
-    <input type="submit" value="Submit">
-  </form>
+  <label id="notRegistered">Not registered yet? Click
+    <a href="register.html">here</a></label>
+
+  <br/>
+  <div id="surroundForm">
+    <form method = "post" id="my-form">
+      <!--NAME IDENTIFIER for nodejs to recognize param-->
+      <label id="userField">Username: <input id="username" name="username" type="text"></label><br/>
+      <label id="passField">Password: <input id="password" name="password" type="password"></label>
+
+      <br/><br/>
+      <input id="submit" type="submit" value="Submit">
+    </form>
+  </div>
+
+
+
+
+  <!--refer to it as submit bc want same physical attributes-->
+  <input id="returnHomePage" type="button" value="Return to Home Page">
+
+  <label id="message"></label>
+
+  <script src="js/login.js"></script>
 </body>
 
 </html>

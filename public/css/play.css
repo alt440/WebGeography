@@ -40,7 +40,7 @@ would also affect the elements within the div*/
 #buttons{
   position: relative;
   top: 40%;
-  left: 35%;
+  left: 25%;
 }
 
 #yes{
@@ -51,6 +51,13 @@ would also affect the elements within the div*/
 }
 
 #no{
+  font-family: medieval;
+  width: auto;
+  height: 60px;
+  font-size: 40px;
+}
+
+#leaderboard{
   font-family: medieval;
   width: auto;
   height: 60px;

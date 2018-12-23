@@ -1,4 +1,4 @@
-//<script>
+  localStorage.setItem("login", undefined);
 
   //to shrink and grow the tabs in the nav bar
   var grow = {fontSize: '60px'};
@@ -55,6 +55,11 @@
 
     $('#about_us').click(function(){
       window.location.href = "about_us.html";
+    });
+
+    $('#logout').click(function(){
+      //no such file. backend has this destination though.
+      window.location.href = "logout.html";
     })
   });
 //</script>

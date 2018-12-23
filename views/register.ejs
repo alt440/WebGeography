@@ -3,18 +3,35 @@
   <meta charset="utf-8">
 
   <title>Register</title>
+
+  <!--adding jQuery-->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+  <script src="js/register.js"></script>
+  <link rel="stylesheet" href="css/register.css">
 </head>
 
 <body>
-  <form method = "post" action='/register.html'>
-    <!--NAME IDENTIFIER for nodejs to recognize param-->
-    <label>Username: <input name="username" type="text"></label><br/>
-    <label>Password: <input name="password" type="password"></label><br/>
-    <label>Email: <input name="email" type="text"></label>
+  <p id="registerTitle">Register</p>
 
-    <br/><br/>
-    <input type="submit" value="Submit">
-  </form>
+  <div id="surroundForm">
+    <form method = "post" action='/register.html'>
+      <!--NAME IDENTIFIER for nodejs to recognize param-->
+      <label id="userField">Username: <input id="username" name="username" type="text"></label><br/>
+      <label id="passField">Password: <input id="password" name="password" type="password"></label><br/>
+      <label id="emailField">Email: <input id="email" name="email" type="text"></label>
+
+      <br/><br/>
+      <input id="submit" type="submit" value="Submit">
+    </form>
+  </div>
+
+  <% if (message!= undefined){ %>
+    <label id="message"><%= message %></label>
+  <% } %>
+
+  <!--refer to it as submit bc want same physical attributes-->
+  <input id="returnHomePage" type="button" value="Return to Home Page">
 </body>
 
 </html>

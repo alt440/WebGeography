@@ -10,8 +10,14 @@ Recently added was NodeJS to act as the server to launch the website application
 
 -Possible use of Heroku
 
--Log in and sign up pages
+-High score board (monthly)
 
--High score board (monthly and weekly)
+-Include a flag guessing game
 
--Practice (queries random countries infinitely) and Play (queries each country in a random manner only once). Play saves the scores, not Practice.
+-Include a state/province guessing game
+
+-Include a capital guessing game
+
+-Make the website manageable for a mobile device
+
+-Make dashboard statistics for the user (Statistics divided for practice and exam, by continent. Nb of answers requested in practice, average number of bad answers in 10 tries in practice, previous exam scores for a continent)

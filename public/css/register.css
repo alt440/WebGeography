@@ -1,0 +1,89 @@
+@font-face {
+  font-family: medieval;
+  src:url('../fonts/PrinceValiant.ttf');
+}
+
+#registerTitle{
+  font-family: medieval;
+  font-size: 40px;
+  text-align: center;
+}
+
+#surroundForm{
+  background-color: #E1A415;
+  border: 2px solid;
+  border-radius: 25px;
+  width: 45%;
+  margin-left: 30%;
+}
+
+#notRegistered{
+  margin-left: 30%;
+}
+
+#userField{
+  width: 40%;
+  margin-left: 25%;
+  font-family: medieval;
+  font-size: 20px;
+}
+
+#username{
+  width: 50%;
+  margin-left: 25%;
+}
+
+#passField{
+  width: 40%;
+  margin-left: 25%;
+  /*margin-right: 24.2%;*/
+  font-family: medieval;
+  font-size: 20px;
+}
+
+#password{
+  width: 50%;
+  margin-left: 25%;
+}
+
+#emailField{
+  width: 40%;
+  margin-left: 25%;
+  font-family: medieval;
+  font-size: 20px;
+}
+
+#email{
+  width: 50%;
+  margin-left: 25%;
+}
+
+#submit{
+  width: 40%;
+  margin-left: 30%;
+  margin-right: 30%;
+  font-family: medieval;
+  font-size: 18px;
+}
+
+#submit:hover{
+  background-image: url('../img/background-buttons.jpg');
+  background-size: auto 100%;
+}
+
+#message{
+  margin-left: 30%;
+}
+
+#returnHomePage{
+  width: 25%;
+  margin-left: 40%;
+  margin-right: 30%;
+  font-family: medieval;
+  font-size: 18px;
+}
+
+#returnHomePage:hover{
+  background-image: url('../img/background-buttons.jpg');
+  background-size: auto 100%;
+}

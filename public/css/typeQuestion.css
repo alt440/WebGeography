@@ -1,0 +1,30 @@
+@font-face {
+  font-family: medieval;
+  src:url('../fonts/PrinceValiant.ttf');
+}
+
+body{
+  background-image: url('../img/typeQuestion.jpg');
+}
+
+h2{
+  font-family: medieval;
+  font-size: 35px;
+}
+
+#practice{
+  width: 120px;
+  height: 110px;
+  font-family: medieval;
+  font-size: 20px;
+  border: 10px solid;
+}
+
+#exam{
+  width: 120px;
+  height: 110px;
+  font-family: medieval;
+  font-size: 20px;
+  border: 10px solid;
+  margin-left: 40px;
+}

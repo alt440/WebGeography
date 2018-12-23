@@ -19,9 +19,13 @@
     }
     $('#yes').click(function(){
       window.location.href = "questions.html";
-    })
+    });
 
     $('#no').click(function(){
       window.location.href = "homePage.html";
+    });
+
+    $('#leaderboard').click(function(){
+      window.location.href = "leaderboard.html";
     })
   });

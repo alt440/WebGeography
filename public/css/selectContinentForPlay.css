@@ -1,0 +1,115 @@
+@font-face {
+  font-family: medieval;
+  src:url('../fonts/PrinceValiant.ttf');
+}
+
+h2{
+  font-family: medieval;
+  font-size: 35px;
+}
+
+#africa{
+  font-family: medieval;
+  font-size: 30px;
+  color: black;
+  background-image: url('../img/africa.jpg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 120px;
+  height: 110px;
+  position: absolute;
+  left: 28px;
+  top: 100px;
+  border: 2px solid;
+}
+
+#asia{
+  font-family: medieval;
+  font-size: 30px;
+  color: black;
+  background-image: url('../img/asia.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 120px;
+  height: 110px;
+  position: absolute;
+  left: 173px;
+  top: 100px;
+  border: 2px solid;
+}
+
+#europe{
+  font-family: medieval;
+  font-size: 30px;
+  color: black;
+  background-image: url('../img/europe.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 120px;
+  height: 110px;
+  position: absolute;
+  left:28px;
+  top: 230px;
+  border: 2px solid;
+}
+
+#north-america{
+  font-family: medieval;
+  font-size: 30px;
+  color: black;
+  background-image: url('../img/north-america.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 120px;
+  height: 110px;
+  border: 2px solid;
+  position: absolute;
+  left:173px;
+  top: 230px;
+}
+
+#oceania{
+  font-family: medieval;
+  font-size: 30px;
+  color: black;
+  background-image: url('../img/oceania.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 120px;
+  height: 110px;
+  position: absolute;
+  left:28px;
+  top: 360px;
+  border: 2px solid;
+}
+
+#south-america{
+  font-family: medieval;
+  font-size: 30px;
+  color: black;
+  background-image: url('../img/south-america.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 120px;
+  height: 110px;
+  position: absolute;
+  left:173px;
+  top: 360px;
+  border: 2px solid;
+}
+
+#all{
+  font-family: medieval;
+  font-size: 30px;
+  color: black;
+  width: 120px;
+  height: 110px;
+  position: absolute;
+  left: 100.5px;
+  top: 490px;
+  border: 2px solid;
+}
+
+body{
+  background-image: url('../img/selectContinentForPlay.jpg')
+}

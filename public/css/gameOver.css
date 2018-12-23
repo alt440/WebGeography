@@ -44,6 +44,11 @@
   background-size: auto 100%;
 }
 
+#leaderboard:hover{
+  background-image: url('../img/background-buttons.jpg');
+  background-size: auto 100%;
+}
+
 #angry_pic{
   position: relative;
   top: 20px;

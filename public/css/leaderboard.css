@@ -1,0 +1,44 @@
+@font-face {
+  font-family: medieval;
+  src:url('../fonts/PrinceValiant.ttf');
+}
+
+h2{
+    font-family: medieval;
+    font-size: 35px;
+}
+
+.title{
+  font-family: medieval;
+  font-size: 20px;
+}
+
+.continent{
+  font-family: medieval;
+  font-size: 25px;
+}
+
+.green{
+  background-color: #8DF59D;
+}
+
+.forest{
+  background-color: #65B071;
+}
+
+.secondElement label{
+  margin-left: 30px;
+}
+
+table{
+  border-collapse: collapse;
+  border-spacing: 0px;
+}
+
+#score{
+  margin-left: 45px;
+}
+
+tr {
+  border: 2px solid;
+}
