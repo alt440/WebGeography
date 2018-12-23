@@ -31,11 +31,13 @@ passport.use(new LocalStrategy(function(username, password, done){
   //console.log(password);
   //check whether one is undefined
   if(username==undefined || password==undefined){
+    //req.session['message'] = "Some field(s) is/are undefined";
     return done(null, false);
   }
   getUserByUsername(username, function(err, user){
     if(err) throw err;
     if(!user){
+      //req.session['message'] = "The user does not exist";
       return done(null, false);
     }
 
@@ -47,6 +49,7 @@ passport.use(new LocalStrategy(function(username, password, done){
         user.timeStamp = new Date().toISOString().replace(/T/, ' ').replace(/\..+/, '');
         return done(null, user);
       } else {
+        //req.session['message'] = "Your password is wrong";
         return done(null, false);
       }
     });
@@ -70,13 +73,14 @@ router.post('/register.html', async(req, res) =>{
     const { error } = validate(req.body);
     if (error) {
         console.log(error.details[0].message);
-        return res.status(400).send(error.details[0].message);
+        return res.redirect('/register.html')/*res.status(400).send(error.details[0].message)*/;
     }
 
     // Check if this user already exists
     let user = await User.findOne({ email: req.body.email });
     if (user) {
-        return res.status(400).send('That user already exists!');
+        req.session['message']="User already exists!";
+        return res.redirect('/register.html');
     } else {
 
         // Insert the new user if they do not exist yet
@@ -99,7 +103,8 @@ router.post('/register.html', async(req, res) =>{
           } else {
             //should indicate here that the user was successfully created
             //returns to the hompage if the user was created
-            return res.redirect('/login.html');
+            req.session['message'] = "User created!";
+            return res.redirect('/register.html');
           }
         });
         return console.log("User created!");
