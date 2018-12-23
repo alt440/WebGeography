@@ -1,4 +1,4 @@
-//<script>
+  localStorage.setItem("login", undefined);
 
   //to shrink and grow the tabs in the nav bar
   var grow = {fontSize: '60px'};

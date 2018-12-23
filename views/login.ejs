@@ -6,7 +6,7 @@
   <!--adding jQuery-->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
-  <script src="js/login.js"></script>
+
   <link rel="stylesheet" href="css/login.css">
 </head>
 
@@ -18,7 +18,7 @@
 
   <br/>
   <div id="surroundForm">
-    <form method = "post">
+    <form method = "post" id="my-form">
       <!--NAME IDENTIFIER for nodejs to recognize param-->
       <label id="userField">Username: <input id="username" name="username" type="text"></label><br/>
       <label id="passField">Password: <input id="password" name="password" type="password"></label>
@@ -28,13 +28,15 @@
     </form>
   </div>
 
-  <% if (message != undefined){ %>
-    <label id="message"><%= message %></label>
-  <% } %>
+
+
 
   <!--refer to it as submit bc want same physical attributes-->
   <input id="returnHomePage" type="button" value="Return to Home Page">
 
+  <label id="message"></label>
+
+  <script src="js/login.js"></script>
 </body>
 
 </html>
