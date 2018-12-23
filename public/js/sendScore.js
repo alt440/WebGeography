@@ -11,4 +11,5 @@ if(localStorage.getItem("examArrayInit") == 1)
 else {
   document.getElementById("hasFinished").value = 0;
 }
+localStorage.setItem("examArrayInit") == undefined;
 document.getElementById("submit").click();
