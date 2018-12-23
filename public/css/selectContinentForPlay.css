@@ -3,6 +3,11 @@
   src:url('../fonts/PrinceValiant.ttf');
 }
 
+h2{
+  font-family: medieval;
+  font-size: 35px;
+}
+
 #africa{
   font-family: medieval;
   font-size: 30px;
