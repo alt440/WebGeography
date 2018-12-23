@@ -32,8 +32,8 @@ $(document).ready(function(){
     localStorage.setItem("continentChoice", 0);
   });
 
-  $('input').click(function(){
+  $('button').click(function(){
     window.location.href = "questions.html";
-  })
+  });
 
 });
