@@ -1,0 +1,30 @@
+@font-face {
+  font-family: medieval;
+  src:url('../fonts/PrinceValiant.ttf');
+}
+
+#winText{
+  font-family: medieval;
+  font-size: 90px;
+  margin-left: 30%;
+}
+
+.button{
+  font-family: medieval;
+  font-size: 30px;
+  height: 50px;
+}
+
+.button:hover{
+  background-image: url('../img/background-buttons.jpg');
+  background-size: auto 100%;
+}
+
+#homePage{
+  margin-left: 30%;
+}
+
+body{
+  background-image: url('../img/examMaxScore.jpg');
+  background-size: cover;
+}
