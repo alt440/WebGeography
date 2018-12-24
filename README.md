@@ -21,3 +21,9 @@ Recently added was NodeJS to act as the server to launch the website application
 -Make the website manageable for a mobile device
 
 -Make dashboard statistics for the user (Statistics divided for practice and exam, by continent. Nb of answers requested in practice, average number of bad answers in 10 tries in practice, previous exam scores for a continent)
+
+-Make custom packages of countries (from an admin account)
+
+-Allow for addition of countries in the list (from admin account, only for that account)
+
+-Email confirmation from registration
