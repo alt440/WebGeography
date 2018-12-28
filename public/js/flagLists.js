@@ -25,7 +25,7 @@ countries = ['algeria','angola','benin','botswana','burkina-faso','burundi',
               'bahamas','belize','canada','costa-rica','cuba','dominican-republic',
               'el-salvador','greenland','guatemala','haiti','honduras','jamaica',
               'mexico','nicaragua','panama','puerto-rico','united-states',
-              'argentina','bolivia','brazil','chile','columbia','ecuador',
+              'argentina','bolivia','brazil','chile','colombia','ecuador',
               'falkland-islands','french-guiana','guyana','paraguay','peru',
               'suriname','uruguay','venezuela','american-samoa','australia',
               'cook-islands','coral-sea-islands','federated-states-of-micronesia',
@@ -83,7 +83,7 @@ countriesNorthAmerica = ['anguilla','antigua-and-barbuda','aruba','bahamas',
               'united-states-virgin-islands'];
 
 //countries only from south america
-countriesSouthAmerica = ['argentina','bolivia','brazil','chile','columbia','ecuador',
+countriesSouthAmerica = ['argentina','bolivia','brazil','chile','colombia','ecuador',
               'falkland-islands','guyana','paraguay','peru',
               'south-georgia-and-the-south-sandwich-islands','suriname','uruguay',
               'venezuela'];
