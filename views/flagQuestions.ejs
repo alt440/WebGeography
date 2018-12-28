@@ -1,0 +1,76 @@
+<html>
+<head>
+  <title>Questions</title>
+  <!-- we can get react files this way because we downloaded them. Look
+ at canonical path-->
+  <script src="js/react.js"></script>
+  <script src="js/react-dom.js"></script>
+  <!--this is a javascript compiler including xml. It does not like comments. Marks those as errors-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.34/browser.js">
+  </script>
+  <!--adding jQuery-->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+  <!--stores the different lists of the countries-->
+  <script src="js/flagLists.js"></script>
+  <!--stores the management of the array of countries to avoid them being repeated.
+        Only valid when "exam" type of game played-->
+  <script src="js/flagExamArrayMgmt.js"></script>
+  <!--manages the change of the image and the associated answer-->
+  <script src="js/flagQuestions.js"></script>
+  <!--manages the answer button in the practice mode of the game-->
+  <!--replicated practiceButton.js to enable more load on web page (concurrency)-->
+  <script src="js/flagPracticeButton.js"></script>
+
+  <meta charset="utf-8">
+
+  <link rel="stylesheet" href="css/questions.css">
+</head>
+<body>
+
+<div id="question">
+
+</div>
+
+<!-- image changes because of questions.js script-->
+<img src="img/flags/algeria.png" alt="Not found" id="picture">
+
+<br/>
+<br/>
+<br/>
+<!-- to get the answer in practice mode-->
+<input type="button" value="Answer" id="answer"></input>
+<br/>
+<br/>
+<label id="answerText"></label>
+
+<script type="text/babel">
+
+  var CountryQuestion = React.createClass({
+    render: function(){
+      return(
+        <div>
+        <div id="background">
+        </div>
+        <div id="countryQs">
+          <h4>What is the flag represented below?</h4>
+          <input type="text" id="user_answer"></input>
+          <button id="submit">Submit</button>
+          <h4 id="goodJob"></h4>
+          <br />
+        </div>
+        </div>
+      )
+    }
+  });
+
+  ReactDOM.render(
+    <CountryQuestion />,
+    document.getElementById('question')
+  );
+
+</script>
+
+
+</body>
+</html>
