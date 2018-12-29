@@ -58,23 +58,6 @@ router.get('/selectContinentForPlay.html', ensureAuthenticated, function(req, re
   res.render('selectContinentForPlay');
 });
 
-router.get('/login.html', function(req, res){
-  //res.sendFile(__dirname+'/login.html');
-  var message = req.session['message'];
-  console.log(message);
-  //set the field by using the req.session
-  req.session['message'] = undefined;
-  res.render('login', {message: message});
-});
-
-router.get('/register.html', function(req, res){
-  //res.sendFile(__dirname+'/register.html');
-  var message = req.session['message'];
-  //set the field by using the req.session
-  req.session['message'] = undefined;
-  res.render('register', {message: message});
-});
-
 router.get('/typeGame.html', ensureAuthenticated, function(req, res){
   res.render('typeGame');
 })
