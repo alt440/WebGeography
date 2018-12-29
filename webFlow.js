@@ -75,6 +75,10 @@ router.get('/register.html', function(req, res){
   res.render('register', {message: message});
 });
 
+router.get('/typeGame.html', ensureAuthenticated, function(req, res){
+  res.render('typeGame');
+})
+
 router.get('/typeQuestion.html', ensureAuthenticated, function(req, res){
   //res.sendFile(__dirname+'/typeQuestion.html');
   res.render('typeQuestion');
@@ -83,6 +87,10 @@ router.get('/typeQuestion.html', ensureAuthenticated, function(req, res){
 router.get('/examMaxScore.html', ensureAuthenticated, function(req, res){
   //res.sendFile(__dirname+'/examMaxScore.html');
   res.render('examMaxScore');
+});
+
+router.get('/flagQuestions.html', ensureAuthenticated, function(req, res){
+  res.render('flagQuestions');
 });
 
 //checks if the user is authenticated
