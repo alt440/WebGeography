@@ -56,8 +56,12 @@ passport.deserializeUser(function(id, done) {
 
 //(Focus on This Variable)
 var url = "mongodb://perS0nADm1N:"+encodeURIComponent("*geo@P0w3r3d*")+"@ds155097.mlab.com:55097/web_geography";
+
+//this is the local DB url. No authentication required
+var local_url = "mongodb://127.0.0.1:27017/web_geography";
+
 //Connects to the online DB.
-mongoose.connect(url, {useNewUrlParser: true});
+//mongoose.connect(local_url, {useNewUrlParser: true});
 
 
 

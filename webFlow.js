@@ -7,7 +7,6 @@ router.get('/', function(req, res){
 
   //a parameter is included in the brackets.
   //only works with passport session and express session! (in the right order)
-
   //this is to determine if the user has logged in. If so, sends a username
   if(req.user != undefined){
     res.render('homePage', {username: req.user.username});
