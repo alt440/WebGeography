@@ -1,6 +1,8 @@
 var mongoose = require('mongoose'); //used to communicate with the MongoDB database
 var Schema = mongoose.Schema;
 
+const {connectUrl, connectLocal} = require('./../mongooseSetup');
+
 var bcrypt = require('bcryptjs');
 var Joi = require('joi');
 
@@ -36,7 +38,7 @@ var userSchema = new Schema({
 });
 
 //creating model using Schema
-var User = mongoose.model('User', userSchema);
+var User = connectLocal.model('User', userSchema);
 
 //validate function
 module.exports.validate = function(User){
