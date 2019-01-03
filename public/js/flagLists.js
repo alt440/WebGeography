@@ -33,7 +33,7 @@ countries = ['algeria','angola','ascension-islands','benin','botswana',
 
               'anguilla','antigua-and-barbuda','aruba','bahamas',
               'barbados','belize','bermuda','bonaire','british-virgin-islands',
-              'canada','cayman-islands','costa-rica','cuba','curaçao','dominica',
+              'canada','cayman-islands','costa-rica','cuba','curacao','dominica',
               'dominican-republic','el-salvador','grenada','guatemala','haiti',
               'honduras','jamaica','mexico','montserrat','nicaragua','panama',
               'puerto-rico','saba','saint-kitts-and-nevis','saint-lucia',
@@ -93,8 +93,8 @@ countriesEurope = ['aland','albania','andorra','austria','belarus','belgium',
 
 //countries only from north america
 countriesNorthAmerica = ['anguilla','antigua-and-barbuda','aruba','bahamas',
-              'barbados','belize','bermuda','bonaire','british-virgin-islands',
-              'canada','cayman-islands','costa-rica','cuba','curaçao','dominica',
+              'barbados','belize','bermuda','british-virgin-islands',
+              'canada','cayman-islands','costa-rica','cuba','dominica',
               'dominican-republic','el-salvador','grenada','guatemala','haiti',
               'honduras','jamaica','mexico','montserrat','nicaragua','panama',
               'puerto-rico','saba','saint-kitts-and-nevis','saint-lucia',
@@ -103,8 +103,8 @@ countriesNorthAmerica = ['anguilla','antigua-and-barbuda','aruba','bahamas',
               'united-states-virgin-islands'];
 
 //countries only from south america
-countriesSouthAmerica = ['argentina','bolivia','brazil','chile','colombia','ecuador',
-              'falkland-islands','guyana','paraguay','peru',
+countriesSouthAmerica = ['argentina','bolivia','bonaire','brazil','chile','colombia',
+              'curacao','ecuador','falkland-islands','guyana','paraguay','peru',
               'south-georgia-and-the-south-sandwich-islands','suriname','uruguay',
               'venezuela'];
 
