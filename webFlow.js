@@ -119,7 +119,7 @@ router.post('/statsB4ScoreSend.html', async(req, res) =>{
         }
         userStats.statsExamCountryScores.set(userStats.statsExamCountryContinent.length,score);
         userStats.statsExamCountryContinent.set(userStats.statsExamCountryContinent.length,continent);
-        if(c >= 2){
+        if(c >= 10){
           userStats.statsExamCountryScores.shift();
           userStats.statsExamCountryContinent.shift();
         }
@@ -133,7 +133,7 @@ router.post('/statsB4ScoreSend.html', async(req, res) =>{
         }
         userStats.statsExamFlagScores.set(userStats.statsExamFlagContinent.length,score);
         userStats.statsExamFlagContinent.set(userStats.statsExamFlagContinent.length,continent);
-        if(c >= 2){
+        if(c >= 10){
           userStats.statsExamFlagScores.shift();
           userStats.statsExamFlagContinent.shift();
         }
@@ -150,7 +150,7 @@ router.post('/statsB4ScoreSend.html', async(req, res) =>{
         }
         userStats.statsPracticeCountryScores.set(userStats.statsPracticeCountryScores.length,score);
         userStats.statsPracticeCountryContinent.set(userStats.statsPracticeCountryContinent.length,continent);
-        if(c >= 2){
+        if(c >= 10){
           userStats.statsPracticeCountryScores.shift();
           userStats.statsPracticeCountryContinent.shift();
         }
@@ -163,7 +163,7 @@ router.post('/statsB4ScoreSend.html', async(req, res) =>{
         }
         userStats.statsPracticeFlagScores.set(userStats.statsPracticeFlagScores.length,score);
         userStats.statsPracticeFlagContinent.set(userStats.statsPracticeFlagContinent.length,continent);
-        if(c >= 2){
+        if(c >= 10){
           userStats.statsPracticeFlagScores.shift();
           userStats.statsPracticeFlagContinent.shift();
         }
