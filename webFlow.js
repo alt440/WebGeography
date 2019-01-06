@@ -82,7 +82,25 @@ router.get('/flagQuestions.html', ensureAuthenticated, function(req, res){
 });
 
 router.get('/userStats.html', function(req, res){
-  res.render('userStats');
+
+  var message = "";
+  //mongoose search
+  UserStats.findOne({username: req.user.username}, function(err, userStats){
+    if(err) return handleError(err);
+
+    if(userStats){
+      //display info of user
+      console.log(userStats);
+      res.render('userStats', {userStats: userStats, message: message, username: req.user.username});
+    }
+    else{
+      message = "There is no available statistics because you have not played yet.";
+      console.log(message);
+      res.render('userStats', {userStats: undefined, message: message, username: req.user.username});
+    }
+  });
+
+
 });
 
 router.get('/statsB4ScoreSend.html', function(req, res){
