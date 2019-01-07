@@ -40,6 +40,8 @@ body{
 #homePage{
   float: right;
   font-family: medieval;
+  position: relative;
+  top: 400px;
 }
 
 #homePage:hover{
