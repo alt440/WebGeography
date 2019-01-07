@@ -61,5 +61,9 @@
       //no such file. backend has this destination though.
       window.location.href = "logout.html";
     })
+
+    $('#stats').click(function(){
+      window.location.href = "userStats.html";
+    })
   });
 //</script>

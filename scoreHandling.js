@@ -3,9 +3,13 @@ var router = express.Router();
 
 //to connect with db
 var url = "mongodb://perS0nADm1N:"+encodeURIComponent("*geo@P0w3r3d*")+"@ds155097.mlab.com:55097/web_geography";
+var local_url = "mongodb://127.0.0.1:27017/web_geography";
+
 //to connect with the mongo client
-var mongo = require('mongodb')
+var mongo = require('mongodb');
 var MongoClient = require('mongodb').MongoClient;
+
+
 
 //for the scoreEntry objects
 const ScoreEntry = require('./models/scoreEntry');
@@ -23,6 +27,7 @@ router.get('/leaderboard.html', function(req, res){
   var scoreArray = new Array(0);
   var usernameArray = new Array(0);
   var continentChoiceArray = new Array(0);
+
   //var url = "mongodb://perS0nADm1N:"+encodeURIComponent("*geo@P0w3r3d*")+"@ds155097.mlab.com:55097/web_geography";
   //grab the scores entries before with a list for users and list for scores
   MongoClient.connect(url,
@@ -173,7 +178,7 @@ router.get('/leaderboardFlags.html', function(req, res){
 //To send the score of the user to the backend for handling
 router.post('/sendScore.html', async(req, res) =>{
   console.log(req.body.scoreText);
-
+  console.log(req.user.username+" My Username");
   scoreEntry = new ScoreEntry({
     username: req.user.username,
     score: req.body.scoreText,
@@ -194,6 +199,7 @@ router.post('/sendScore.html', async(req, res) =>{
     collection = "flagscoreentries";
     object = FlagScoreEntry;
   }
+
   //there must be a condition to see if there is an already existing score for
   //the user, as username cannot be replicated
   let user = await object.findOne({ username: req.user.username,
@@ -204,14 +210,14 @@ router.post('/sendScore.html', async(req, res) =>{
       if(req.body.scoreText > user.score){
         MongoClient.connect(url,
           function(err, db) {
-
+            console.log(url);
             var dbo = db.db("web_geography");
             //query to set the new values
             var newvalues = { $set: {score: req.body.scoreText} };
             dbo.collection(collection).updateOne(user, newvalues, function(err, res) {
               if (err)
                 throw err;
-
+              console.log(user.username);
               console.log("1 document updated");
               db.close();
             });
@@ -224,16 +230,23 @@ router.post('/sendScore.html', async(req, res) =>{
   }
   else{
     //create a new score entry for the user. Verifies on leaderboard page if it merits to stay in DB.
-    object.create(scoreEntry, function (err, user) {
-      if (err) {
-        console.log(err);
-        throw err;
-      } else {
-        //should indicate here that the user was successfully created
-        //returns to the hompage if the user was created
-        console.log("New score entry");
-      }
+    //first connect to outside DB
+    //Connects to the online DB.
+    MongoClient.connect(url, { useNewUrlParser: true }, function(err,db){
+      object.create(scoreEntry, function (err, user) {
+        console.log(url);
+        if (err) {
+          console.log(err);
+          throw err;
+        } else {
+          //should indicate here that the user was successfully created
+          //returns to the hompage if the user was created
+          console.log("New score entry");
+          console.log(scoreEntry.username);
+        }
+      });
     });
+
   }
   console.log("Has finished: "+req.body.hasFinished);
   if(req.body.hasFinished == 1){
@@ -242,6 +255,8 @@ router.post('/sendScore.html', async(req, res) =>{
   else{
     res.redirect('/gameOver.html');
   }
+
+
 
 });
 

@@ -176,11 +176,11 @@
           //if we are in exam mode:
           if(localStorage.getItem("typeQuestion") == 1){
             //send score before getting to gameOver
-            window.location.href = "sendScore.html";
+            window.location.href = "statsB4ScoreSend.html";
           }
           //if in practice mode:
           else{
-            window.location.href = "gameOver.html";
+            window.location.href = "statsB4ScoreSend.html";
           }
 
         }

@@ -1,0 +1,310 @@
+<html>
+<head>
+  <title>About Us</title>
+
+  <!-- this allows me to design graphs -->
+  <script src="js/d3.min.js"></script>
+  <!--this is a javascript compiler including xml. It does not like comments. Marks those as errors-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.34/browser.js">
+  </script>
+  <!--adding jQuery-->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+  <meta charset="utf-8">
+
+  <link rel="stylesheet" href="css/userStats.css">
+</head>
+<body>
+
+  <% if(userStats==undefined){ %>
+    <h1>Welcome <%= username %>!</h1>
+    <h2><%= message %></h2>
+  <%}%>
+
+  <% if(userStats!=undefined){ %>
+    <h1>Welcome <%= username %>!</h1>
+    <script>
+      //total nb of countries for each continent
+      var countriesAfrica = 60;
+      var countriesAsia = 48;
+      var countriesEurope = 51;
+      var countriesNA = 36;
+      var countriesOceania = 31;
+      var countriesSA = 17;
+      var countriesAll = 242;
+      //total nb flags for each continent
+      var flagsAfrica = 60;
+      var flagsAsia = 51;
+      var flagsEurope = 51;
+      var flagsNA = 37;
+      var flagsOceania = 36;
+      var flagsSA = 14;
+      var flagsAll = 249;
+
+      var arrayFlagsCountries = [60, 48, 51, 36, 31, 17, 242, 60, 51, 51, 37, 36, 14, 249];
+
+      var dataExamFlag = <%- JSON.stringify(userStats.statsExamFlagScores) %>;
+      var continentExamFlag = <%- JSON.stringify(userStats.statsExamFlagContinent) %>;
+
+      var dataExamCountry = <%- JSON.stringify(userStats.statsExamCountryScores) %>;
+      var continentExamCountry = <%- JSON.stringify(userStats.statsExamCountryContinent) %>;
+
+      //for continent africa
+      var dataExamFlagAfrica = new Array(0);
+      var a_ = 0; //follows index
+      var dataExamCountryAfrica = new Array(0);
+      var b_ = 0; //follows index
+
+      //for continent asia
+      var dataExamFlagAsia = new Array(0);
+      var x_ = 0; //follows index
+      var dataExamCountryAsia = new Array(0);
+      var c_ = 0; //follows index
+
+      //for continent europe
+      var dataExamFlagEurope = new Array(0);
+      var d_ = 0; //follows index
+      var dataExamCountryEurope = new Array(0);
+      var e_ = 0; //follows index
+
+      //for continent na
+      var dataExamFlagNA = new Array(0);
+      var f_ = 0; //follows index
+      var dataExamCountryNA = new Array(0);
+      var g_ = 0; //follows index
+
+      //for continent oceania
+      var dataExamFlagOceania = new Array(0);
+      var h_ = 0; //follows index
+      var dataExamCountryOceania = new Array(0);
+      var i_ = 0; //follows index
+
+      //for continent sa
+      var dataExamFlagSA = new Array(0);
+      var j_ = 0; //follows index
+      var dataExamCountrySA = new Array(0);
+      var k_ = 0; //follows index
+
+      //for all continents
+      var dataExamFlagAll = new Array(0);
+      var l_ = 0; //follows index
+      var dataExamCountryAll = new Array(0);
+      var m_ = 0; //follows index
+
+
+      //the numbers are dependent to the continent they were attributed to
+      for(var i=0;i<dataExamCountry.length;i++){
+        if(continentExamCountry[i]==1){
+          dataExamCountryAfrica[b_] = dataExamCountry[i];
+          b_++;
+        }
+        else if(continentExamCountry[i]==2){
+          dataExamCountryAsia[c_] = dataExamCountry[i];
+          c_++;
+        }
+        else if(continentExamCountry[i]==3){
+          dataExamCountryEurope[e_] = dataExamCountry[i];
+          e_++;
+        }
+        else if(continentExamCountry[i]==4){
+          dataExamCountryNA[g_] = dataExamCountry[i];
+          g_++;
+        }
+        else if(continentExamCountry[i]==5){
+          dataExamCountryOceania[i_] = dataExamCountry[i];
+          i_++;
+        }
+        else if(continentExamCountry[i]==6){
+          dataExamCountrySA[k_] = dataExamCountry[i];
+          k_++;
+        }
+        else if(continentExamCountry[i]==0){
+          dataExamCountryAll[m_] = dataExamCountry[i];
+          m_++;
+        }
+      }
+
+
+      //the numbers are dependent on those given to the continents in the selectContinentForPlay.js
+      for(var i=0;i<dataExamFlag.length;i++){
+        if(continentExamFlag[i]==1){
+          dataExamFlagAfrica[a_] = dataExamFlag[i];
+          a_++;
+        }
+        else if(continentExamFlag[i]==2){
+          dataExamFlagAsia[x_] = dataExamFlag[i];
+          x_++;
+        }
+        else if(continentExamFlag[i]==3){
+          dataExamFlagEurope[d_] = dataExamFlag[i];
+          d_++;
+        }
+        else if(continentExamFlag[i]==4){
+          dataExamFlagNA[f_] = dataExamFlag[i];
+          f_++;
+        }
+        else if(continentExamFlag[i]==5){
+          dataExamFlagOceania[h_] = dataExamFlag[i];
+          h_++;
+        }
+        else if(continentExamFlag[i]==6){
+          dataExamFlagSA[j_] = dataExamFlag[i];
+          j_++;
+        }
+        else if(continentExamFlag[i]==0){
+          dataExamFlagAll[l_] = dataExamFlag[i];
+          l_++;
+        }
+      }
+
+      //put a title to section
+      document.body.innerHTML += "<label id='sectionExam'>Exam Section: Flag Scores</label>";
+
+      //build the data sets first
+      buildingGraphData(dataExamFlagAfrica, 7);
+      buildingGraphData(dataExamFlagAsia, 8);
+      buildingGraphData(dataExamFlagEurope, 9);
+      buildingGraphData(dataExamFlagNA, 10);
+      buildingGraphData(dataExamFlagOceania, 11);
+      buildingGraphData(dataExamFlagSA, 12);
+      buildingGraphData(dataExamFlagAll, 13);
+
+      //then create the graphs
+      createGraph(dataExamFlagAfrica, "Africa Flag Scores");
+      createGraph(dataExamFlagAsia, "Asia Flag Scores");
+      createGraph(dataExamFlagEurope, "Europe Flag Scores");
+      createGraph(dataExamFlagNA, "North America Flag Scores");
+      createGraph(dataExamFlagOceania, "Oceania Flag Scores");
+      createGraph(dataExamFlagSA, "South America Flag Scores");
+      createGraph(dataExamFlagAll, "All Continents Flag Scores");
+
+      //create a line break to separate the types
+      document.body.innerHTML += "<br/>";
+      document.body.innerHTML += "<label id='sectionExam2'>Exam Section: Country Scores</label>";
+
+      //build the data sets first
+      buildingGraphData(dataExamCountryAfrica, 0);
+      buildingGraphData(dataExamCountryAsia, 1);
+      buildingGraphData(dataExamCountryEurope, 2);
+      buildingGraphData(dataExamCountryNA, 3);
+      buildingGraphData(dataExamCountryOceania, 4);
+      buildingGraphData(dataExamCountrySA, 5);
+      buildingGraphData(dataExamCountryAll, 6);
+
+      //then create the graphs
+      createGraph(dataExamCountryAfrica, "Africa Country Scores");
+      createGraph(dataExamCountryAsia, "Asia Country Scores");
+      createGraph(dataExamCountryEurope, "Europe Country Scores");
+      createGraph(dataExamCountryNA, "North America Country Scores");
+      createGraph(dataExamCountryOceania, "Oceania Country Scores");
+      createGraph(dataExamCountrySA, "South America Country Scores");
+      createGraph(dataExamCountryAll, "All Continents Country Scores");
+
+      //to build the array in 10 spaces and with percentages
+      function buildingGraphData(data, number){
+        //creating the array properly
+        for(var i=0;i<10;i++){
+          if(data[i]==undefined){
+            //should be percentage, but using for testing purposes
+            data[i]=0;
+          }
+          else{
+            data[i]=(data[i]/(arrayFlagsCountries[number]*1.0))*100;
+          }
+        }
+      }
+
+      function createGraph(data, titleGraph){
+          //we need to have an already created svg element in this case, which is
+          //created just above this script.
+          var width = 600,
+          height = 500;
+          // Create variable for the SVG
+          var svg = d3.select("body").append("svg")
+                    .attr("height",height)
+                    .attr("width",width);
+
+         //title of the graph
+         svg.append("text")
+             .attr("stroke", "black")
+             .attr("transform", "translate(400, 100)")
+             .style("fill","black")
+             .style("font-size", "25px")
+             .style("text-decoration", "underline")
+             .text(titleGraph);
+
+          // Select, append to SVG, and add attributes to rectangles for bar chart
+          svg.selectAll("rect")
+              .data(data)
+              .enter().append("rect")
+                    .attr("class", "bar") //setting the rect objects to have class bar
+                    .attr("height", function(d, i) {return (d * 2)}) //setting the height of each to depend upon the data
+                    .attr("width","40") //setting the width of each to 40
+                    .attr("x", function(d, i) {return (i * 45) + 55}) //setting the x position
+                    .attr("y", function(d, i) {return 350 - (d * 2)}); //setting the y position
+
+          // Select, append to SVG, and add attributes to text
+          /*svg.selectAll("text")
+              .data(arrayAsia)
+              .enter().append("text")
+              .text(function(d) {return d})
+                     .attr("class", "text")
+                     .attr("x", function(d, i) {return (i * 45) + 80})
+                     .attr("y", function(d, i) {return 365 - (d * 2)});*/
+
+           // Create scale
+           var scale = d3.scaleLinear()
+                         .domain([0,9])
+                         .range([0, width - 200]);
+
+           // Add scales to axis
+           var x_axis = d3.axisBottom()
+                           .scale(scale);
+
+           //Append group and insert axis
+           svg.append("g")
+               .attr("transform", "translate(52, 350)")
+               .call(x_axis)
+               //.attr("class","axis")
+               //.attr("text-anchor", "end")
+               .attr("stroke", "black")
+               .append("text")
+               .attr("transform", "translate(230, 40)")
+               .text("Try Number");
+
+           // Create scale
+           var scaleY = d3.scaleLinear()
+                           .domain([0,100])
+                           .range([350, 145]);
+
+           // Add scales to y axis
+           var y_axis = d3.axisLeft()
+                           .scale(scaleY);
+
+           svg.append("g")
+               .attr("transform", "translate(52, 0)")
+               .call(y_axis.tickFormat(function(d){
+                    //console.log(d);
+                    return d+"%";
+                }))
+               .attr("stroke", "black")
+               .append("text")
+               .attr("transform", "rotate(-90), translate(-220,-40)")
+               .text("Score");
+        }
+
+    </script>
+  <% } %>
+
+  <!--return to home page button-->
+  <button id="homePage">Return to Home Page</button>
+
+  <script>
+    $(document).ready(function(){
+      $('#homePage').click(function(){
+        window.location.href = "homePage.html";
+      })
+    })
+  </script>
+</body>
+</html>

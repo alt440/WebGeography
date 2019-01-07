@@ -2,6 +2,8 @@
 //exam mode
 
 var mongoose = require('mongoose'); //used to communicate with the MongoDB database
+const {connectUrl, connectLocal} = require('./../mongooseSetup');
+
 var Schema = mongoose.Schema;
 
 var flagScoreEntry = new Schema({
@@ -31,6 +33,6 @@ var flagScoreEntry = new Schema({
 });
 
 //creating model using Schema
-var FlagScoreEntry = mongoose.model('FlagScoreEntry', flagScoreEntry);
+var FlagScoreEntry = connectUrl.model('FlagScoreEntry', flagScoreEntry);
 
 module.exports = FlagScoreEntry;
