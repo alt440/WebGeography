@@ -27,3 +27,35 @@ Recently added was NodeJS to act as the server to launch the website application
 -Allow for addition of countries in the list (from admin account, only for that account)
 
 -Email confirmation from registration
+
+# How to Launch
+
+Step 1: Create your Mongo database
+
+Step 2: Install Nodejs
+
+Step 3: Install the dependencies
+
+Step 4: Launch the App
+
+
+Step 1: Create your Mongo Database
+
+Checkout the file Install_Mongo_Linux.odt for the instructions on how to download mongoDB on Linux.
+
+Step 2: Install Nodejs
+
+In Linux: 
+
+-Go in your terminal and type "sudo apt-get install nodejs"
+-Then do "sudo apt-get install npm"
+
+Step 3: Install the dependencies
+
+-You simply need to do "npm install" in the folder of this project and voila.
+
+Step 4: Launch the App
+
+Go into the console and into the WebGeography project, and type : "node server.js"
+
+

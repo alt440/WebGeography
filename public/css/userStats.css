@@ -1,6 +1,10 @@
+@font-face {
+  font-family: medieval;
+  src:url('../fonts/PrinceValiant.ttf');
+}
 
 svg rect {
-    fill: orange;
+    fill: #AE0400;
 }
 
 svg text {
@@ -17,4 +21,28 @@ svg text {
   position: absolute;
   left: 50px;
   top: 80px;
+  font-size: 20px;
+  font-family: medieval;
+}
+
+#sectionExam2 {
+  position: absolute;
+  left: 50px;
+  top: 3580px;
+  font-size: 20px;
+  font-family: medieval;
+}
+
+body{
+  background-color: #F0A3A2;
+}
+
+#homePage{
+  float: right;
+  font-family: medieval;
+}
+
+#homePage:hover{
+  background-image: url('../img/background-buttons.jpg');
+  background-size: auto 100%;
 }

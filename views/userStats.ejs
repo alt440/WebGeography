@@ -158,9 +158,7 @@
       }
 
       //put a title to section
-      var sectionExam = document.createElement("label");
-      sectionExam.innerHTML = "Exam Section";
-      document.body.innerHTML += "<label id='sectionExam'>Exam Section</label>";
+      document.body.innerHTML += "<label id='sectionExam'>Exam Section: Flag Scores</label>";
 
       //build the data sets first
       buildingGraphData(dataExamFlagAfrica, 7);
@@ -181,8 +179,8 @@
       createGraph(dataExamFlagAll, "All Continents Flag Scores");
 
       //create a line break to separate the types
-      var br = document.createElement("br");
       document.body.innerHTML += "<br/>";
+      document.body.innerHTML += "<label id='sectionExam2'>Exam Section: Country Scores</label>";
 
       //build the data sets first
       buildingGraphData(dataExamCountryAfrica, 0);
@@ -216,7 +214,7 @@
         }
       }
 
-        function createGraph(data, titleGraph){
+      function createGraph(data, titleGraph){
           //we need to have an already created svg element in this case, which is
           //created just above this script.
           var width = 600,
@@ -297,5 +295,16 @@
 
     </script>
   <% } %>
+
+  <!--return to home page button-->
+  <button id="homePage">Return to Home Page</button>
+
+  <script>
+    $(document).ready(function(){
+      $('#homePage').click(function(){
+        window.location.href = "homePage.html";
+      })
+    })
+  </script>
 </body>
 </html>

@@ -136,6 +136,16 @@
   top: 10px;
 }
 
+#stats{
+  float: right;
+  font-family: medieval;
+}
+
+#stats:hover{
+  background-image: url('../img/background-buttons.jpg');
+  background-size: auto 100%;
+}
+
 #logout{
   float: right;
   font-family: medieval;
