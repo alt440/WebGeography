@@ -103,7 +103,7 @@ router.get('/userStats.html', function(req, res){
 
 });
 
-router.get('/statsB4ScoreSend.html', function(req, res){
+router.get('/statsB4ScoreSend.html', ensureAuthenticated, function(req, res){
   res.render('statsB4ScoreSend');
 });
 
