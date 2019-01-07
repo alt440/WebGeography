@@ -18,7 +18,13 @@
       $('#country_last_asked').text('You failed when you were asked for the country '+onlyName+'.');
     }
     $('#yes').click(function(){
-      window.location.href = "questions.html";
+      var typeGame = localStorage.getItem("typeGame");
+      if(typeGame == 1){
+        window.location.href = "questions.html";
+      }
+      else{
+        window.location.href = "flagQuestions.html";
+      }
     });
 
     $('#no').click(function(){

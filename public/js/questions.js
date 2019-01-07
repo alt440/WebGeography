@@ -140,6 +140,8 @@
 
     $('#submit').click(function(){
 
+      //answer given from the answer button in practice mode
+      $('#answerText').hide();
       //to determine if the exam array was previously init in same game.
       //To know if exam is completed
       localStorage.setItem("examArrayInit", 0);

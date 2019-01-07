@@ -33,7 +33,14 @@ $(document).ready(function(){
   });
 
   $('button').click(function(){
-    window.location.href = "questions.html";
+    var typeGame = localStorage.getItem("typeGame");
+    if(typeGame==1){
+      window.location.href = "questions.html";
+    }
+    else{
+      window.location.href = "flagQuestions.html";
+    }
+
   });
 
 });

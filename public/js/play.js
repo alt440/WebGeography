@@ -31,7 +31,7 @@ $(document).ready(function(){
   })
 
   $('#yes').click(function(){
-    window.location.href = "typeQuestion.html";
+    window.location.href = "typeGame.html";
   })
 
   $('#leaderboard').click(function(){

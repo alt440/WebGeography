@@ -58,22 +58,9 @@ router.get('/selectContinentForPlay.html', ensureAuthenticated, function(req, re
   res.render('selectContinentForPlay');
 });
 
-router.get('/login.html', function(req, res){
-  //res.sendFile(__dirname+'/login.html');
-  var message = req.session['message'];
-  console.log(message);
-  //set the field by using the req.session
-  req.session['message'] = undefined;
-  res.render('login', {message: message});
-});
-
-router.get('/register.html', function(req, res){
-  //res.sendFile(__dirname+'/register.html');
-  var message = req.session['message'];
-  //set the field by using the req.session
-  req.session['message'] = undefined;
-  res.render('register', {message: message});
-});
+router.get('/typeGame.html', ensureAuthenticated, function(req, res){
+  res.render('typeGame');
+})
 
 router.get('/typeQuestion.html', ensureAuthenticated, function(req, res){
   //res.sendFile(__dirname+'/typeQuestion.html');
@@ -83,6 +70,10 @@ router.get('/typeQuestion.html', ensureAuthenticated, function(req, res){
 router.get('/examMaxScore.html', ensureAuthenticated, function(req, res){
   //res.sendFile(__dirname+'/examMaxScore.html');
   res.render('examMaxScore');
+});
+
+router.get('/flagQuestions.html', ensureAuthenticated, function(req, res){
+  res.render('flagQuestions');
 });
 
 //checks if the user is authenticated

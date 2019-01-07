@@ -52,3 +52,23 @@ tr {
   background-image: url('../img/background-buttons.jpg');
   background-size: auto 100%;
 }
+
+#leaderboards{
+  font-family: medieval;
+  font-size: 20px;
+}
+
+#leaderboards:hover{
+  background-image: url('../img/background-buttons.jpg');
+  background-size: auto 100%;
+}
+
+#leaderboardsFlags{
+  font-family: medieval;
+  font-size: 20px;
+}
+
+#leaderboardFlags:hover{
+  background-image: url('../img/background-buttons.jpg');
+  background-size: auto 100%;
+}

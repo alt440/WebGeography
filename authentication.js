@@ -56,6 +56,24 @@ passport.use(new LocalStrategy(function(username, password, done){
   });
 }));
 
+
+router.get('/login.html', function(req, res){
+  //res.sendFile(__dirname+'/login.html');
+  var message = req.session['message'];
+  console.log(message);
+  //set the field by using the req.session
+  req.session['message'] = undefined;
+  res.render('login', {message: message});
+});
+
+router.get('/register.html', function(req, res){
+  //res.sendFile(__dirname+'/register.html');
+  var message = req.session['message'];
+  //set the field by using the req.session
+  req.session['message'] = undefined;
+  res.render('register', {message: message});
+});
+
 //To handle the POST forms of the login and register pages
 router.post('/login.html',
   passport.authenticate("local", {
