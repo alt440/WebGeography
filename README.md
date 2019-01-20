@@ -8,11 +8,11 @@ Recently added was NodeJS to act as the server to launch the website application
 
 # Future Features
 
--Possible use of Heroku
+-Create batch file for Windows
+
+-Create script for Mac
 
 -High score board (monthly)
-
--Include a flag guessing game
 
 -Include a state/province guessing game
 
