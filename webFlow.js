@@ -81,7 +81,7 @@ router.get('/flagQuestions.html', ensureAuthenticated, function(req, res){
   res.render('flagQuestions');
 });
 
-router.get('/userStats.html', ensureAuthenticated, function(req, res){
+router.get('/userStats.html', function(req, res){
 
   var message = "";
   //mongoose search
