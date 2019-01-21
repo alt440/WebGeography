@@ -18,7 +18,9 @@ Then do: "./exec.sh"
 
 Step 2: Launch the application (for next times)
 
-Go in your terminal, and into the WebGeography directory, and type "node server.js". Voila!
+Go in your terminal, and into the WebGeography directory, and type "node server.js". 
+
+Then go in your favorite web browser and type "localhost:1337" in your search bar and voila!
 
 # How to Launch on Mac (coming soon)
 
@@ -32,13 +34,15 @@ Go in your terminal, and into the WebGeography directory, and type "node server.
 
 -Create script for Mac
 
+-French translation
+
 -High score board (monthly)
 
 -Include a state/province guessing game
 
 -Include a capital guessing game
 
--Make the website manageable for a mobile device
+-Make the website manageable for a mobile device (???)
 
 -Make dashboard statistics for the user (Statistics divided for practice and exam, by continent. Nb of answers requested in practice, average number of bad answers in 10 tries in practice, previous exam scores for a continent)
 
