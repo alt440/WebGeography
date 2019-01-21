@@ -6,6 +6,26 @@ This project had the purpose to gain some experience using jQuery and ReactJS. I
 
 Recently added was NodeJS to act as the server to launch the website application. A MongoDB database was added as well from mlab.
 
+# How to Launch
+
+# How to Launch in Linux
+
+Step 1: Execute the exec.sh script
+
+To do so, do the "chmod 777 exec.sh" command in the WebGeography directory first.
+
+Then do: "./exec.sh"
+
+Step 2: Launch the application (for next times)
+
+Go in your terminal, and into the WebGeography directory, and type "node server.js". Voila!
+
+# How to Launch on Mac (coming soon)
+
+# How to Launch on Windows (coming soon)
+
+
+
 # Future Features
 
 -Create batch file for Windows
@@ -27,35 +47,3 @@ Recently added was NodeJS to act as the server to launch the website application
 -Allow for addition of countries in the list (from admin account, only for that account)
 
 -Email confirmation from registration
-
-# How to Launch
-
-Step 1: Create your Mongo database
-
-Step 2: Install Nodejs
-
-Step 3: Install the dependencies
-
-Step 4: Launch the App
-
-
-Step 1: Create your Mongo Database
-
-Checkout the file Install_Mongo_Linux.odt for the instructions on how to download mongoDB on Linux.
-
-Step 2: Install Nodejs
-
-In Linux: 
-
--Go in your terminal and type "sudo apt-get install nodejs"
--Then do "sudo apt-get install npm"
-
-Step 3: Install the dependencies
-
--You simply need to do "npm install" in the folder of this project and voila.
-
-Step 4: Launch the App
-
-Go into the console and into the WebGeography project, and type : "node server.js"
-
-
