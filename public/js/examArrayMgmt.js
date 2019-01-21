@@ -83,6 +83,6 @@ function removeSelectedCountry(index){
   if(localStorage.getItem("examArrayInit") == 1 && examCountriesArray.length == 0){
 
     //to jump to page that will send the score, then to winning page
-    window.location.href = "sendScore.html";
+    window.location.href = "statsB4ScoreSend.html";
   }
 }
